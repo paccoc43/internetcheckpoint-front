@@ -6,6 +6,8 @@
 
 ## Requerimientos
 
+Descomprimir dev.zip en C:\
+
 El proyecto utiliza los siguientes paquetes de código abierto:
 
 * [VSCode](https://code.visualstudio.com/) 
