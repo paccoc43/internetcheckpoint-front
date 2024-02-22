@@ -3,6 +3,8 @@
 
 ## Requerimientos
 
+Descomprimir dev.zip en C:\
+
 El proyecto utiliza los siguientes paquetes de código abierto:
 
 * [NodeJS](https://nodejs.org) 
@@ -12,11 +14,11 @@ El proyecto utiliza los siguientes paquetes de código abierto:
 * [Bootstrap](https://getbootstrap.com)
 * [AnimeJS](https://animejs.com)
 
-Proyecto de base de angular-cli: ``ng new pas --style=scss --prefix=pas``
 
 ## Instalación
 
     npm install
+
 
 ## Ejecución
 
@@ -31,9 +33,6 @@ Genera el build en la carpeta [dist](./dist/pas)
 
     npm run build
 
-Si aparece un error de node-sass al build, ejecutar:
-
-    npm install node-sass@4.10.0 --no-save
 
 ## Analisis    
 
