@@ -8,9 +8,14 @@
 
 Descomprimir dev.zip en C:\
 
-El proyecto utiliza los siguientes paquetes de código abierto:
+Entornos necesarios
+
 
 * [VSCode](https://code.visualstudio.com/) 
+
+El proyecto utiliza los siguientes paquetes de código abierto:
+
+
 * [NodeJS](https://nodejs.org) 
 * [Angular](https://angular.io) 
 * [Angular CLI](https://cli.angular.io) 
