@@ -1,9 +1,20 @@
 # InternetCheckpoint-Front
 ![](./src/assets/img/prueba.svg)
 
+* [Rama main](https://github.com/paccoc43/internetcheckpoint-front)
+* [Rama develop](https://github.com/paccoc43/internetcheckpoint-front/tree/develop)
+
 ## Requerimientos
 
+Descomprimir dev.zip en C:\
+
+Entornos necesarios
+
+
+* [VSCode](https://code.visualstudio.com/) 
+
 El proyecto utiliza los siguientes paquetes de código abierto:
+
 
 * [NodeJS](https://nodejs.org) 
 * [Angular](https://angular.io) 
@@ -24,37 +35,25 @@ Levanta la [Web](http://localhost:4200) en entorno de  ```Desarrollo```
 
     npm start
 
-
 ## Build
 
-Genera el build en la carpeta [dist](./dist/pas)
+Genera el build 
 
     npm run build
 
-Si aparece un error de node-sass al build, ejecutar:
-
-    npm install node-sass@4.10.0 --no-save
-
-## Analisis    
-
-Muestra un esquema del blundle generado
-
-    npm run analyze
-
-
 ## Instrucciones angular-cli
 
-| Scaffold  | Usage                                       | ShortCut |
-| --------- | ------------------------------------------- | -------- |
-| Component | `ng g component my-new-component`           |          |
-| Directive | `ng g directive my-new-directive`           |          |
-| Pipe      | `ng g pipe my-new-pipe`                     |          |
-| Service   | `ng g service my-new-service`               |          |
-| Class     | `ng g class my-new-class`                   |          |
-| Interface | `ng g interface my-new-interface`           |          |
-| Enum      | `ng g enum my-new-enum`                     |          |
-| Module    | `ng g module my-module`                     |          |
-| Routing   | `ng g module modules/module-name --routing` |          |
+| Scaffold  | Usage                                       |
+| --------- | ------------------------------------------- |
+| Component | `ng g component my-new-component`           |
+| Directive | `ng g directive my-new-directive`           |
+| Pipe      | `ng g pipe my-new-pipe`                     |
+| Service   | `ng g service my-new-service`               |
+| Class     | `ng g class my-new-class`                   |
+| Interface | `ng g interface my-new-interface`           |
+| Enum      | `ng g enum my-new-enum`                     |
+| Module    | `ng g module my-module`                     |
+| Routing   | `ng g module modules/module-name --routing` |
 
 ## Errores
 MSBUILD : error MSB4132: The tools version "2.0" is unrecognized. Available tools versions are "4.0".
