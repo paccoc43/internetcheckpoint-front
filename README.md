@@ -1,7 +1,5 @@
-# PAS (Principado de Asturias) 
-![](./src/assets/img/Gobierno_del_Principado_de_Asturias.svg)
-
-Seed de Componentes y Módulos para el proyecto del Principado de Asturias 
+# InternetCheckpoint-Front
+![](./src/assets/img/prueba.svg)
 
 ## Requerimientos
 
@@ -61,11 +59,17 @@ Muestra un esquema del blundle generado
 ## Errores
 MSBUILD : error MSB4132: The tools version "2.0" is unrecognized. Available tools versions are "4.0".
 
-	Falta instalar visual studio redistributable y python a través del comando: npm install --global --production windows-build-tools
+Falta instalar visual studio redistributable y python a través del comando: 
+
+    npm install --global --production windows-build-tools
 
 cannot conver t argument 1 from 'v8::Local<v8::Value>' to 'const v8::String::Utf8Value
 
-	Versión de node es más nueva: 
-	- instalar nvm(gestor de versiones node): https://content.breatheco.de/en/how-to/nvm-install-windows#:~:text=Steps%20to%20install%20with%20nvm%3A&text=Install%20nvm%20Go%20to%20your,that%20you%20will%20hit%20too.
+Versión de node es más nueva: 
+
+Instalar nvm(gestor de versiones node): 
+    https://content.breatheco.de/en/how-to/nvm-install-windows#:~:text=Steps%20to%20install%20with%20nvm%3A&text=Install%20nvm%20Go%20to%20your,that%20you%20will%20hit%20too.
+
 	- nvm install 10.16.3
+
 	- nvm use 10.16.3
