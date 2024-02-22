@@ -1,27 +1,71 @@
-# InternetCheckpoint
+# PAS (Principado de Asturias) 
+![](./src/assets/img/Gobierno_del_Principado_de_Asturias.svg)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
+Seed de Componentes y Módulos para el proyecto del Principado de Asturias 
 
-## Development server
+## Requerimientos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+El proyecto utiliza los siguientes paquetes de código abierto:
 
-## Code scaffolding
+* [NodeJS](https://nodejs.org) 
+* [Angular](https://angular.io) 
+* [Angular CLI](https://cli.angular.io) 
+* [Angular Material](https://material.angular.io)
+* [Bootstrap](https://getbootstrap.com)
+* [AnimeJS](https://animejs.com)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Proyecto de base de angular-cli: ``ng new pas --style=scss --prefix=pas``
+
+## Instalación
+
+    npm install
+
+## Ejecución
+
+Levanta la [Web](http://localhost:4200) en entorno de  ```Desarrollo```
+
+    npm start
+
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Genera el build en la carpeta [dist](./dist/pas)
 
-## Running unit tests
+    npm run build
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Si aparece un error de node-sass al build, ejecutar:
 
-## Running end-to-end tests
+    npm install node-sass@4.10.0 --no-save
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Analisis    
 
-## Further help
+Muestra un esquema del blundle generado
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    npm run analyze
+
+
+## Instrucciones angular-cli
+
+| Scaffold  | Usage                                       | ShortCut |
+| --------- | ------------------------------------------- | -------- |
+| Component | `ng g component my-new-component`           |          |
+| Directive | `ng g directive my-new-directive`           |          |
+| Pipe      | `ng g pipe my-new-pipe`                     |          |
+| Service   | `ng g service my-new-service`               |          |
+| Class     | `ng g class my-new-class`                   |          |
+| Interface | `ng g interface my-new-interface`           |          |
+| Enum      | `ng g enum my-new-enum`                     |          |
+| Module    | `ng g module my-module`                     |          |
+| Routing   | `ng g module modules/module-name --routing` |          |
+
+## Errores
+MSBUILD : error MSB4132: The tools version "2.0" is unrecognized. Available tools versions are "4.0".
+
+	Falta instalar visual studio redistributable y python a través del comando: npm install --global --production windows-build-tools
+
+cannot conver t argument 1 from 'v8::Local<v8::Value>' to 'const v8::String::Utf8Value
+
+	Versión de node es más nueva: 
+	- instalar nvm(gestor de versiones node): https://content.breatheco.de/en/how-to/nvm-install-windows#:~:text=Steps%20to%20install%20with%20nvm%3A&text=Install%20nvm%20Go%20to%20your,that%20you%20will%20hit%20too.
+	- nvm install 10.16.3
+	- nvm use 10.16.3
