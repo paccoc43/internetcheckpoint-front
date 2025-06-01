@@ -7,7 +7,5 @@ export class Usuario {
     public sexo:string;
     public fecha_nacimiento:Date;
     public es_admin:boolean;
-    constructor(
-        
-    ) {};
+
 }

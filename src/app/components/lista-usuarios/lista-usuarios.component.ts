@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { Usuario } from '../../modelos/usuario';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MenuAdminComponent } from "../menu-admin/menu-admin.component";
 import { MatIconModule } from '@angular/material/icon';
 
 
@@ -12,10 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-lista-usuarios',
   standalone: true,
   imports: [
-    NavbarComponent,
     CommonModule,
     HttpClientModule,
-    MenuAdminComponent,
     MatIconModule,
 ],
   templateUrl: './lista-usuarios.component.html',

@@ -3,6 +3,7 @@ import {HomePageComponent} from './pages/home-page/home-page.component';
 import {ListaUsuariosComponent} from './components/lista-usuarios/lista-usuarios.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 
 export const routes: Routes = [
     { 
@@ -18,11 +19,9 @@ export const routes: Routes = [
         // ] 
     },
     {
-        path: 'lista-usuarios',
-        title: 'lista-usuarios',
-        component: ListaUsuariosComponent,
+        path: 'dashboard',
+        component: DashboardPageComponent,
         pathMatch: 'full'
-            
     },
     { 
         path: 'login',
