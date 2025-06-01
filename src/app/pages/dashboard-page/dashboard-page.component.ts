@@ -3,6 +3,8 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { MenuAdminComponent } from '../../components/menu-admin/menu-admin.component';
 import { ListaUsuariosComponent } from '../../components/lista-usuarios/lista-usuarios.component';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -10,6 +12,7 @@ import { ListaUsuariosComponent } from '../../components/lista-usuarios/lista-us
   imports: [
     RouterModule,
     NavbarComponent,
+    CommonModule,
     ListaUsuariosComponent,
     MenuAdminComponent
   ],
@@ -17,5 +20,6 @@ import { ListaUsuariosComponent } from '../../components/lista-usuarios/lista-us
   styleUrl: './dashboard-page.component.scss'
 })
 export class DashboardPageComponent {
+  constructor(public authService: AuthService) {}
 
 }

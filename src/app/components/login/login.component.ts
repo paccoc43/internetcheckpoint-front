@@ -34,16 +34,26 @@ export class LoginComponent {
       const authRequest = new AuthRequest();
       authRequest.usuario = this.loginForm.value.email;
       authRequest.password = this.loginForm.value.password;
-      // Aquí deberías llamar a tu servicio de autenticación
-      // Por ejemplo:
       this.authservice.autenticarUsuario(authRequest).subscribe( response => {
-          console.log('Login exitoso:', response);
-          // Aquí podrías redirigir al usuario a otra página
-          this.router.navigate(['/home']);
+          this.onSuccess(response);
         }, error => {
           console.error('Credenciales incorrectos, comprueba el usuario o contraseña', error);
         }
       );
     }
+  }
+
+  onSuccess(response: any) {
+    console.log('Login exitoso');
+    localStorage.setItem('usuario', JSON.stringify(response));
+    // localStorage.setItem('token', response.token); // si tu API devuelve un token
+
+    this.router.navigate(['/home']);
+  }
+
+  logout() {
+    localStorage.removeItem('usuario');
+    // localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }

@@ -1,17 +1,20 @@
-<p>menu-admin works!</p>
-<div class="container">
-    <div class="row">
-        <div
-            class="col-4"
-        >
-            <a class="btn btn-outline-success" routerLink="/dashboard" routerLinkActive="active">Dashboard usuarios</a>
-        </div>
-        <div
-            class="col-4"
-        >
-            <a class="btn btn-outline-success" routerLink="/metricas" routerLinkActive="active">Métricas</a>
-        </div>
-        
+<div class="container my-4">
+  <div class="row justify-content-center g-3">
+    <div class="col-auto">
+      <a class="btn btn-success d-flex align-items-center px-4 py-2 shadow-sm"
+         routerLink="/dashboard"
+         routerLinkActive="active">
+        <span class="material-icons me-2">dashboard</span>
+        Dashboard usuarios
+      </a>
     </div>
+    <div class="col-auto">
+      <a class="btn btn-info d-flex align-items-center px-4 py-2 shadow-sm"
+         routerLink="/metricas"
+         routerLinkActive="active">
+        <span class="material-icons me-2">bar_chart</span>
+        Métricas
+      </a>
+    </div>
+  </div>
 </div>
-

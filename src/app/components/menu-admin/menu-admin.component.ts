@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -6,6 +7,7 @@ import { RouterModule } from '@angular/router';
   selector: 'app-menu-admin',
   standalone: true,
   imports: [
+    CommonModule,
     RouterModule
   ],
   templateUrl: './menu-admin.component.html',

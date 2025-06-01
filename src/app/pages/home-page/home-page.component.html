@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
-<app-menu-admin></app-menu-admin>
+<app-menu-admin *ngIf="authService.isAdmin() === 'ADMIN'"></app-menu-admin>
+<!-- <app-menu-admin></app-menu-admin> -->
 <app-menu></app-menu>
 <p>home-page works!</p>
