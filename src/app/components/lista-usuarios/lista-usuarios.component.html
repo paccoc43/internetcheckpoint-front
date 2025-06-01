@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+<app-menu-admin></app-menu-admin>
 <table class="table mt-5">
     <thead>
       <tr>
@@ -10,22 +11,33 @@
     </thead>
     <tbody>
       <tr>
-        <th scope="row">1</th>
+        <th scope="row">#</th>
         <td>Mark</td>
         <td>Otto</td>
         <td>mdo</td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>twitter</td>
+      <tr *ngFor="let usuario of usuarios; let i = index">
+        <th scope="row">{{i}}</th>
+        <td>{{usuario.nombre_usuario}}</td>
+        <td>{{usuario.apellidos}}</td>
+        <td>{{usuario.email}}</td>
+        <td>
+        <button class="btn btn-info btn-sm"
+          (click)="editarUsuario(usuario.nombre_usuario)"
+          [attr.data-nombre]="usuario.nombre_usuario">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button class="btn btn-danger btn-sm"
+          (click)="eliminarUsuario(usuario.nombre_usuario)"
+          [attr.data-nombre]="usuario.nombre_usuario">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
       </tr>
     </tbody>
   </table>
 <p>Lista usuarios works</p>
+
+<span class="material-symbols-outlined">
+edit
+</span>

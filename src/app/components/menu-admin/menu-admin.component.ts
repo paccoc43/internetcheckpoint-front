@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-menu-admin',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterModule
+  ],
   templateUrl: './menu-admin.component.html',
   styleUrl: './menu-admin.component.scss'
 })
