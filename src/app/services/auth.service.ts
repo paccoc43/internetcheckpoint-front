@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environment';
 import { Usuario } from '../modelos/usuario';
+import { AuthRequest } from '../modelos/auth-request';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class AuthService {
   
   constructor(private httpclient:HttpClient) { }
   //Llamada al servidor para autenticar un usuario
-  autenticarUsuario(nombre_usuario:string, contrasena:string):Observable<any> {
-    return this.httpclient.post<any>(`${this.urlApi}/auth/login`, { nombre_usuario, contrasena });
+  autenticarUsuario(authRequest:AuthRequest):Observable<any> {
+    return this.httpclient.post<any>(`${this.urlApi}/auth/login`, authRequest);
   }
 
   //Llamada al servidor para registrar un nuevo usuario
