@@ -13,5 +13,3 @@ let el = document.getElementById("container");
 export class MenuComponent {
 
 }
-console.log(boton);
-console.log(el);

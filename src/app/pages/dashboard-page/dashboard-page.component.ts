@@ -1,25 +1,25 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { MenuComponent } from '../../components/menu/menu.component';
 import { MenuAdminComponent } from '../../components/menu-admin/menu-admin.component';
+import { ListaUsuariosComponent } from '../../components/lista-usuarios/lista-usuarios.component';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-home-page',
+  selector: 'app-dashboard-page',
   standalone: true,
   imports: [
     RouterModule,
     NavbarComponent,
-    MenuComponent,
     CommonModule,
+    ListaUsuariosComponent,
     MenuAdminComponent
   ],
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss'
+  templateUrl: './dashboard-page.component.html',
+  styleUrl: './dashboard-page.component.scss'
 })
-export class HomePageComponent {
+export class DashboardPageComponent {
   constructor(public authService: AuthService) {}
 
 }

@@ -1,1 +1,40 @@
-<p>lista-usuarios works!</p>
+<div class="card mt-5 shadow">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">Lista de usuarios</h5>
+  </div>
+  <div class="card-body p-0">
+    <table class="table table-hover mb-0">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellidos</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios; let i = index">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{usuario.nombre_usuario}}</td>
+          <td>{{usuario.apellidos}}</td>
+          <td>{{usuario.email}}</td>
+          <td>
+            <button class="btn btn-info btn-sm me-1"
+              (click)="editarUsuario(usuario.nombre_usuario)"
+              [attr.data-nombre]="usuario.nombre_usuario"
+              title="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="btn btn-danger btn-sm"
+              (click)="eliminarUsuario(usuario.nombre_usuario)"
+              [attr.data-nombre]="usuario.nombre_usuario"
+              title="Eliminar">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

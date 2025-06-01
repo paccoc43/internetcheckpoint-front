@@ -1,0 +1,24 @@
+<div class="container d-flex justify-content-center mt-5 border border-3">
+  <form class="p-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-outline mb-4">
+      <input type="email" id="form2Example1" class="form-control" formControlName="email" />
+      <label class="form-label" for="form2Example1">Email address</label>
+    </div>
+    <div class="form-outline mb-4">
+      <input type="password" id="form2Example2" class="form-control" formControlName="password" />
+      <label class="form-label" for="form2Example2">Password</label>
+    </div>
+    <div class="row mb-4">
+      <div class="col d-flex justify-content-center">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="form2Example31" formControlName="remember" />
+          <label class="form-check-label" for="form2Example31"> Remember me </label>
+        </div>
+      </div>
+      <div class="col">
+        <a href="#!">Forgot password?</a>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="loginForm.invalid">Sign in</button>
+  </form>
+</div>
