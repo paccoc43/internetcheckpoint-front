@@ -1,4 +1,4 @@
 export class AuthRequest {
     public usuario:string;
-    public passworld:string;
+    public password:string;
 }

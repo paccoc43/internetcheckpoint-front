@@ -33,7 +33,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const authRequest = new AuthRequest();
       authRequest.usuario = this.loginForm.value.email;
-      authRequest.passworld = this.loginForm.value.password;
+      authRequest.password = this.loginForm.value.password;
       // Aquí deberías llamar a tu servicio de autenticación
       // Por ejemplo:
       this.authservice.autenticarUsuario(authRequest).subscribe( response => {
