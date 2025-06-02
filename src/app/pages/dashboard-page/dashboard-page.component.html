@@ -1,5 +1,10 @@
 <app-navbar></app-navbar>
 <app-menu-admin *ngIf="authService.isAdmin() === 'ADMIN'"></app-menu-admin>
 <div class="container mt-4">
-  <app-lista-usuarios></app-lista-usuarios>
+  <div class="row mb-3">
+    <div class="col-12 col-md-6">
+      <app-buscador-usuarios (buscar)="onSubmit($event)"></app-buscador-usuarios>
+    </div>
+  </div>
+  <app-lista-usuarios [filtroUsuario]="usuarioFiltro"></app-lista-usuarios>
 </div>

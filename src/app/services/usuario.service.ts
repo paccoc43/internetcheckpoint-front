@@ -17,6 +17,11 @@ export class UsuarioService {
   obtenerListaUsuarios():Observable<Usuario[]> {
     return this.httpclient.get<Usuario[]>(`${this.urlApi}/usuarios`);
   }
+
+  // Obtiene una lista de usuarios filtrados
+  obtenerListaUsuariosFiltrado(filtro: Usuario | null): Observable<Usuario[]> {
+    return this.httpclient.post<Usuario[]>(`${this.urlApi}/usuarios/buscar`, filtro || {});
+  }
   
   //Obtiene un usuario utilizando nombre_usuario como identificador
   obtenerUsuario(nombre_usuario:string):Observable<Usuario> {

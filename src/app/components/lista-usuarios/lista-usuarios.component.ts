@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Usuario } from '../../modelos/usuario';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
@@ -19,6 +19,8 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ListaUsuariosComponent implements OnInit{
 
+  @Input() filtroUsuario: Usuario | null = null;
+
   public fecha_nacimiento:Date = new Date();
   public fecha_creacion:Date = new Date();
 
@@ -33,6 +35,18 @@ export class ListaUsuariosComponent implements OnInit{
     this.obtenerUsuarios()
  
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['filtroUsuario']) {
+      this.obtenerUsuarios();
+    }
+  }
+
+  // obtenerUsuarios() {
+  //   this.usuarioService.obtenerListaUsuariosFiltrado(this.filtroUsuario).subscribe(datos => {
+  //     this.usuarios = datos;
+  //   });
+  // }
 
   private obtenerUsuarios() {
     this.usuarioService.obtenerListaUsuarios().subscribe(datos => {
