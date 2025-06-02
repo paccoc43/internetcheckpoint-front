@@ -23,25 +23,27 @@
         <div class="col-md-4">
           <input type="date" class="form-control" formControlName="fecha_creacion" placeholder="Fecha creación">
         </div>
-        <div class="col-md-4 d-flex align-items-center">
-          <label class="me-2 mb-0">Admin</label>
-          <div class="btn-group" role="group">
+        <div class="col-md-4">
+        <div class="mb-1">
+            <label class="form-label">Admin</label>
+        </div>
+        <div class="btn-group w-100" role="group">
             <button type="button" class="btn"
-              [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '', 'btn-primary': busquedaForm.value.es_admin === ''}"
-              (click)="busquedaForm.get('es_admin')?.setValue('')">
-              Ambos
+            [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '', 'btn-primary': busquedaForm.value.es_admin === ''}"
+            (click)="busquedaForm.get('es_admin')?.setValue('')">
+            Ambos
             </button>
             <button type="button" class="btn"
-              [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '1', 'btn-primary': busquedaForm.value.es_admin === '1'}"
-              (click)="busquedaForm.get('es_admin')?.setValue('1')">
-              Sí
+            [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '1', 'btn-primary': busquedaForm.value.es_admin === '1'}"
+            (click)="busquedaForm.get('es_admin')?.setValue('1')">
+            Sí
             </button>
             <button type="button" class="btn"
-              [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '0', 'btn-primary': busquedaForm.value.es_admin === '0'}"
-              (click)="busquedaForm.get('es_admin')?.setValue('0')">
-              No
+            [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '0', 'btn-primary': busquedaForm.value.es_admin === '0'}"
+            (click)="busquedaForm.get('es_admin')?.setValue('0')">
+            No
             </button>
-          </div>
+        </div>
         </div>
       </div>
     </div>

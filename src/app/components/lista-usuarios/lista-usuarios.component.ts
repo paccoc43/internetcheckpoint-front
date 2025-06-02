@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Usuario } from '../../modelos/usuario';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
@@ -17,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './lista-usuarios.component.html',
   styleUrl: './lista-usuarios.component.scss'
 })
-export class ListaUsuariosComponent implements OnInit{
+export class ListaUsuariosComponent implements OnInit, OnChanges{
 
   @Input() filtroUsuario: Usuario | null = null;
 
@@ -38,22 +38,22 @@ export class ListaUsuariosComponent implements OnInit{
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['filtroUsuario']) {
-      this.obtenerUsuarios();
+      this.obtenerUsuariosFiltrados();
     }
   }
 
-  // obtenerUsuarios() {
-  //   this.usuarioService.obtenerListaUsuariosFiltrado(this.filtroUsuario).subscribe(datos => {
-  //     this.usuarios = datos;
-  //   });
-  // }
-
-  private obtenerUsuarios() {
+  obtenerUsuarios() {
     this.usuarioService.obtenerListaUsuarios().subscribe(datos => {
       this.usuarios = datos;
     }, error => {
       console.error('Error al obtener la lista de usuarios:', error);
     });
+  }
+
+  obtenerUsuariosFiltrados() {
+  this.usuarioService.obtenerListaUsuariosFiltrado(this.filtroUsuario).subscribe(datos => {
+    this.usuarios = datos;
+  });
   }
 
   editarUsuario(nombre: string) {
