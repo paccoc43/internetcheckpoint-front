@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../modelos/usuario';
 import { Observable } from 'rxjs';
 import { environment } from '../../environment';
+import { Page } from '../modelos/page';
+// Interfaz Page para paginación
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +19,10 @@ export class UsuarioService {
   //Obtiene una lista de usuarios
   obtenerListaUsuarios():Observable<Usuario[]> {
     return this.httpclient.get<Usuario[]>(`${this.urlApi}/usuarios`);
+  }
+  // Obtiene una pagina de usuarios filtrados
+  obtenerPaginaUsuariosFiltrado(filtro: Usuario, page: number, size: number) {
+    return this.httpclient.post<Page<Usuario>>(`${this.urlApi}/usuarios/pagina`, filtro,{ params: { page, size } });
   }
 
   // Obtiene una lista de usuarios filtrados
