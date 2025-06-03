@@ -15,9 +15,9 @@ import { Usuario } from '../../modelos/usuario';
     RouterModule,
     NavbarComponent,
     CommonModule,
+    MenuAdminComponent,
     ListaUsuariosComponent,
-    BuscadorUsuariosComponent,
-    MenuAdminComponent
+    BuscadorUsuariosComponent
   ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss'

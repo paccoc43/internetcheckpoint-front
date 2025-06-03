@@ -6,18 +6,18 @@ import { MenuAdminComponent } from '../../components/menu-admin/menu-admin.compo
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-metrics-page',
+  selector: 'app-tags-page',
   standalone: true,
   imports: [
     RouterModule,
     NavbarComponent,
     CommonModule,
-    MenuAdminComponent,
+    MenuAdminComponent
   ],
-  templateUrl: './metrics-page.component.html',
-  styleUrl: './metrics-page.component.scss'
+  templateUrl: './tags-page.component.html',
+  styleUrl: './tags-page.component.scss'
 })
-export class MetricsPageComponent {
+export class TagsPageComponent {
 
     constructor(
       public authService: AuthService
