@@ -6,48 +6,56 @@
     <div class="card-body">
       <div class="row g-3">
         <div class="col-md-4">
-          <input class="form-control" formControlName="nombre_usuario" placeholder="Nombre de usuario">
+          <label class="form-label">Nombre de usuario</label>
+          <input class="form-control" formControlName="nombre_usuario">
         </div>
         <div class="col-md-4">
-          <input class="form-control" formControlName="apellidos" placeholder="Apellidos">
+          <label class="form-label">Apellidos</label>
+          <input class="form-control" formControlName="apellidos">
         </div>
         <div class="col-md-4">
-          <input class="form-control" formControlName="email" placeholder="Correo">
+          <label class="form-label">Correo</label>
+          <input class="form-control" formControlName="email">
         </div>
         <div class="col-md-4">
-          <input class="form-control" formControlName="sexo" placeholder="Sexo">
+          <label class="form-label">Sexo</label>
+          <select class="form-select" formControlName="sexo">
+            <option value="hombre">Hombre</option>
+            <option value="mujer">Mujer</option>
+          </select>
         </div>
         <div class="col-md-4">
-          <input type="date" class="form-control" formControlName="fecha_nacimiento" placeholder="Fecha nacimiento">
+          <label class="form-label">Fecha nacimiento</label>
+          <input type="date" class="form-control" formControlName="fecha_nacimiento">
         </div>
         <div class="col-md-4">
-          <input type="date" class="form-control" formControlName="fecha_creacion" placeholder="Fecha creación">
+          <label class="form-label">Fecha creación</label>
+          <input type="date" class="form-control" formControlName="fecha_creacion">
         </div>
         <div class="col-md-4">
-        <div class="mb-1">
-            <label class="form-label">Admin</label>
-        </div>
-        <div class="btn-group w-100" role="group">
+          <label class="form-label">Admin</label>
+          <div class="btn-group w-100" role="group">
             <button type="button" class="btn"
-            [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '', 'btn-primary': busquedaForm.value.es_admin === ''}"
-            (click)="busquedaForm.get('es_admin')?.setValue('')">
-            Ambos
+              [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '', 'btn-primary': busquedaForm.value.es_admin === ''}"
+              (click)="busquedaForm.get('es_admin')?.setValue('')">
+              Ambos
             </button>
             <button type="button" class="btn"
-            [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '1', 'btn-primary': busquedaForm.value.es_admin === '1'}"
-            (click)="busquedaForm.get('es_admin')?.setValue('1')">
-            Sí
+              [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '1', 'btn-primary': busquedaForm.value.es_admin === '1'}"
+              (click)="busquedaForm.get('es_admin')?.setValue('1')">
+              Sí
             </button>
             <button type="button" class="btn"
-            [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '0', 'btn-primary': busquedaForm.value.es_admin === '0'}"
-            (click)="busquedaForm.get('es_admin')?.setValue('0')">
-            No
+              [ngClass]="{'btn-outline-primary': busquedaForm.value.es_admin !== '0', 'btn-primary': busquedaForm.value.es_admin === '0'}"
+              (click)="busquedaForm.get('es_admin')?.setValue('0')">
+              No
             </button>
-        </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card-footer bg-white border-0 d-flex justify-content-end">
+    <div class="card-footer bg-white border-0 d-flex justify-content-end gap-2">
+      <button class="btn btn-danger" type="button" (click)="limpiarForm()">Limpiar</button>
       <button class="btn btn-primary" type="submit">Buscar</button>
     </div>
   </form>

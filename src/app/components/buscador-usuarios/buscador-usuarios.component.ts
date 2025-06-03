@@ -32,6 +32,19 @@ export class BuscadorUsuariosComponent {
 
   onSubmit() {
     const usuario: Usuario = this.busquedaForm.value;
+    console.log('Formulario busqueda usuarios:', usuario);
     this.buscar.emit(usuario);
   }
+
+  limpiarForm() {
+  this.busquedaForm.reset({
+    nombre_usuario: '',
+    apellidos: '',
+    email: '',
+    sexo: '',
+    fecha_nacimiento: '',
+    fecha_creacion: '',
+    es_admin: ''
+  });
+}
 }
