@@ -5,6 +5,7 @@ import { MenuComponent } from '../../components/menu/menu.component';
 import { MenuAdminComponent } from '../../components/menu-admin/menu-admin.component';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { NuevaPublicacionComponent } from '../../components/nueva-publicacion/nueva-publicacion.component';
 
 @Component({
   selector: 'app-home-page',
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     RouterModule,
     NavbarComponent,
+    NuevaPublicacionComponent,
     MenuComponent,
     CommonModule,
     MenuAdminComponent
