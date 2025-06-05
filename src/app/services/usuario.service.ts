@@ -14,14 +14,16 @@ export class UsuarioService {
 
   private urlApi:string = environment.api;
 
-  constructor(private httpclient:HttpClient) { }
+  constructor(
+    private httpclient:HttpClient
+  ) {}
 
   //Obtiene una lista de usuarios
   obtenerListaUsuarios():Observable<Usuario[]> {
     return this.httpclient.get<Usuario[]>(`${this.urlApi}/usuarios`);
   }
   // Obtiene una pagina de usuarios filtrados
-  obtenerPaginaUsuariosFiltrado(filtro: Usuario, page: number, size: number) {
+  obtenerPaginaUsuariosFiltrado(filtro: Usuario | null, page: number, size: number) {
     return this.httpclient.post<Page<Usuario>>(`${this.urlApi}/usuarios/pagina`, filtro,{ params: { page, size } });
   }
 
