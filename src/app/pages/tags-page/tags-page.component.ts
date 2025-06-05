@@ -4,6 +4,8 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { MenuAdminComponent } from '../../components/menu-admin/menu-admin.component';
 import { AuthService } from '../../services/auth.service';
+import { EditorTagsComponent } from '../../components/editor-tags/editor-tags.component';
+import { ListaTagsComponent } from '../../components/lista-tags/lista-tags.component';
 
 @Component({
   selector: 'app-tags-page',
@@ -12,7 +14,9 @@ import { AuthService } from '../../services/auth.service';
     RouterModule,
     NavbarComponent,
     CommonModule,
-    MenuAdminComponent
+    MenuAdminComponent,
+    EditorTagsComponent,
+    ListaTagsComponent
   ],
   templateUrl: './tags-page.component.html',
   styleUrl: './tags-page.component.scss'

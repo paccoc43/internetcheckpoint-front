@@ -1,1 +1,51 @@
-<p>editor-tags works!</p>
+<div class="card shadow mb-4">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">{{ editando ? 'Editar Tag' : 'Nueva Tag' }}</h5>
+  </div>
+  <form (ngSubmit)="guardarTag()" #tagForm="ngForm">
+    <div class="card-body row g-3">
+      <div class="col-md-4">
+        <label class="form-label">Nombre</label>
+        <input class="form-control" [(ngModel)]="tag.nombre" name="nombre" required>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Fuente</label>
+        <input class="form-control" [(ngModel)]="tag.fuente" name="fuente">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Color</label>
+        <input class="form-control" [(ngModel)]="tag.color" name="color" type="color">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Descripción</label>
+        <input class="form-control" [(ngModel)]="tag.descripcion" name="descripcion">
+      </div>
+      <!-- <div class="col-md-4">
+        <label class="form-label">Emoji</label>
+        <emoji-mart (emojiSelect)="tag.emoji = $event.emoji.native"></emoji-mart>
+        <input class="form-control" [(ngModel)]="tag.emoji" name="emoji">
+      </div> -->
+      <div class="col-md-4">
+        <label class="form-label">Emoji</label>
+        <div class="input-group">
+            <input class="form-control" [(ngModel)]="tag.emoji" name="emoji" readonly placeholder="Selecciona un emoji">
+            <button type="button" class="btn btn-outline-secondary" (click)="mostrarPicker = !mostrarPicker">
+            <span *ngIf="tag.emoji">{{ tag.emoji }}</span>
+            <span *ngIf="!tag.emoji">😊</span>
+            </button>
+        </div>
+        <div *ngIf="mostrarPicker" class="mt-2 position-absolute" style="z-index: 1000;">
+            <emoji-mart (emojiSelect)="seleccionarEmoji($event)"></emoji-mart>
+        </div>
+        </div>
+      <div class="col-md-4">
+        <label class="form-label">Creador</label>
+        <input class="form-control" disabled="true" [(ngModel)]="tag.nombre_usuario" name="nombre_usuario">
+      </div>
+    </div>
+    <div class="card-footer bg-white border-0 d-flex justify-content-end gap-2">
+      <button class="btn btn-secondary" type="button" (click)="cancelar()">Cancelar</button>
+      <button class="btn btn-primary" type="submit">{{ editando ? 'Actualizar' : 'Crear' }}</button>
+    </div>
+  </form>
+</div>

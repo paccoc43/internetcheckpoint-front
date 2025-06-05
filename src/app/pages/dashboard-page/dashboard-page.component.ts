@@ -23,6 +23,7 @@ import { Usuario } from '../../modelos/usuario';
   styleUrl: './dashboard-page.component.scss'
 })
 export class DashboardPageComponent {
+  //Almacena los datos del usuario filtrado, si está vacio mosttrara todos los usuarios
   usuarioFiltro: Usuario | null = null;
   
   constructor(

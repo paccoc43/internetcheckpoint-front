@@ -13,9 +13,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HttpClientModule,
-    CommonModule,
     FormsModule,
-    
     MatIconModule,
 ],
   templateUrl: './lista-usuarios.component.html',
