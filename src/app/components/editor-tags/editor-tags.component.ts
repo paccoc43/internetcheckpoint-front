@@ -24,7 +24,14 @@ export class EditorTagsComponent implements OnInit {
   tag: Tag = this.nuevaTag();
   editando: boolean = false;
   mostrarPicker: boolean = false;
-  
+
+  fuentes: string[] = [
+  'Arial', 'Verdana', 'Tahoma', 'Trebuchet MS', 'Times New Roman',
+  'Georgia', 'Garamond', 'Courier New', 'Brush Script MT', 'Comic Sans',
+  'Impact', 'Lucida Console', 'Monaco', 'Palatino', 'Segoe UI',
+  'Roboto', 'Montserrat', 'Lato', 'Oswald', 'Raleway'
+  ];
+
   constructor(
     private tagService: TagService
   ) {}
@@ -49,14 +56,15 @@ export class EditorTagsComponent implements OnInit {
         this.cancelar();
       });
     } else {
-      this.tagService.crearTag(this.tag).subscribe(() => {
+      this.tagService.crearTag(this.tag).subscribe((nuevaTag) => {
+        console.log('Tag creada con id:', nuevaTag.id_tag);
         this.cancelar();
       });
     }
   }
 
   editarTag(tag: Tag) {
-    this.tag = { ...tag };
+    this.tag = tag ;
     this.editando = true;
   }
 

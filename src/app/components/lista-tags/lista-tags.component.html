@@ -18,7 +18,7 @@
       <tbody>
         <tr *ngFor="let t of tags">
           <td>{{ t.nombre }}</td>
-          <td>{{ t.fuente }}</td>
+          <td [style.font-family]="t.fuente">{{ t.fuente }}</td>
           <td><span [style.background]="t.color" class="px-3 py-1 rounded d-inline-block"></span> {{ t.color }}</td>
           <td>{{ t.descripcion }}</td>
           <td>{{ t.emoji }}</td>

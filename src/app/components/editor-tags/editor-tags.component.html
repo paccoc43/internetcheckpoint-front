@@ -8,10 +8,14 @@
         <label class="form-label">Nombre</label>
         <input class="form-control" [(ngModel)]="tag.nombre" name="nombre" required>
       </div>
-      <div class="col-md-4">
-        <label class="form-label">Fuente</label>
-        <input class="form-control" [(ngModel)]="tag.fuente" name="fuente">
-      </div>
+        <div class="col-md-4">
+          <label class="form-label">Fuente</label>
+          <select class="form-select" [(ngModel)]="tag.fuente" name="fuente">
+            <option *ngFor="let fuente of fuentes" [ngValue]="fuente" [style.font-family]="fuente">
+              {{ fuente }}
+            </option>
+          </select>
+        </div>
       <div class="col-md-4">
         <label class="form-label">Color</label>
         <input class="form-control" [(ngModel)]="tag.color" name="color" type="color">
