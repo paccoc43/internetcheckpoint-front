@@ -5,6 +5,7 @@ import { Tag } from '../../modelos/tag';
 import { TagService } from '../../services/tag.service';
 import { PublicacionService } from '../../services/publicacion.service';
 import { Publicacion } from '../../modelos/publicacion';
+import { animate } from 'animejs';
 
 @Component({
   selector: 'app-nueva-publicacion',

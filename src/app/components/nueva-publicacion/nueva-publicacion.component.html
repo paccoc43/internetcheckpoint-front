@@ -18,9 +18,9 @@
                   [ngStyle]="{
             'font-family': publicacionForm.get('tagSeleccionado')?.value?.fuente || 'inherit',
           }"></textarea>
-        <div *ngIf="publicacionForm.get('texto')?.invalid && publicacionForm.get('texto')?.touched" class="text-danger small">
+        <!-- <div *ngIf="publicacionForm.get('texto')?.invalid && publicacionForm.get('texto')?.touched" class="text-danger small">
           El texto es obligatorio.
-        </div>
+        </div> -->
       </div>
       <div class="mb-3">
         <label class="form-label">Imágenes o vídeos</label>

@@ -5,6 +5,11 @@
   <form (ngSubmit)="guardarTag()" #tagForm="ngForm" autocomplete="off">
     <div class="card-body">
       <div class="row g-3">
+        <!-- Input Creador al principio -->
+        <div class="col-md-4">
+          <label class="form-label">Creador</label>
+          <input class="form-control" disabled [(ngModel)]="tag.nombre_usuario" name="nombre_usuario">
+        </div>
         <div class="col-md-4">
           <label class="form-label">Nombre</label>
           <input class="form-control" [(ngModel)]="tag.nombre" name="nombre" required maxlength="30" placeholder="Nombre de la tag">
@@ -25,10 +30,6 @@
           </div>
         </div>
         <div class="col-md-4">
-          <label class="form-label">Descripción</label>
-          <input class="form-control" [(ngModel)]="tag.descripcion" name="descripcion" maxlength="100" placeholder="Descripción corta">
-        </div>
-        <div class="col-md-4">
           <label class="form-label">Emoji</label>
           <div class="input-group">
             <input class="form-control" [(ngModel)]="tag.emoji" name="emoji" readonly placeholder="Selecciona un emoji">
@@ -41,9 +42,10 @@
             <emoji-mart (emojiSelect)="seleccionarEmoji($event)"></emoji-mart>
           </div>
         </div>
-        <div class="col-md-4">
-          <label class="form-label">Creador</label>
-          <input class="form-control" disabled [(ngModel)]="tag.nombre_usuario" name="nombre_usuario">
+        <!-- Descripción como textarea al final -->
+        <div class="col-12">
+          <label class="form-label">Descripción</label>
+          <textarea class="form-control" [(ngModel)]="tag.descripcion" name="descripcion" maxlength="100" rows="2" placeholder="Descripción corta"></textarea>
         </div>
       </div>
     </div>
