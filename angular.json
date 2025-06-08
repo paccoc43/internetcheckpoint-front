@@ -36,8 +36,7 @@
               "node_modules/@ctrl/ngx-emoji-mart/picker.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "node_modules/animejs/lib/anime.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
