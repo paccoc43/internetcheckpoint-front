@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<app-menu-admin *ngIf="authService.isAdmin() === 'ADMIN'"></app-menu-admin>
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col-12 col-md-8">
+      <!-- <app-editor-tags (crear)="onSubmit($event)"></app-editor-tags> -->
+       <app-editor-tags></app-editor-tags>
+    </div>
+  </div>
+  <app-lista-tags></app-lista-tags>
+</div>

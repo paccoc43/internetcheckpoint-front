@@ -1,3 +1,11 @@
 <app-navbar></app-navbar>
-<app-login></app-login>
-<app-register></app-register>
+<!-- <app-login *ngIf="!mostrarRegistro" (registrar)="mostrarFormularioRegistro()"></app-login>
+<app-register *ngIf="mostrarRegistro" (volver)="mostrarFormularioLogin()"></app-register> -->
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col-12 col-md-12">
+        <app-login *ngIf="!mostrarRegistro" (registrar)="mostrarFormularioRegistro()"></app-login>    </div>
+  </div>
+  <app-register *ngIf="mostrarRegistro" (volver)="mostrarFormularioLogin()"></app-register>
+
+</div>

@@ -1,0 +1,38 @@
+<div class="card mt-4 shadow">
+  <div class="card-header bg-success text-white">
+    <h5 class="mb-0">Tags existentes</h5>
+  </div>
+  <div class="card-body p-0">
+    <table class="table table-hover mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>Nombre</th>
+          <th>Fuente</th>
+          <th>Color</th>
+          <th>Descripción</th>
+          <th>Emoji</th>
+          <th>Creador</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of tags">
+          <td>{{ t.nombre }}</td>
+          <td [style.font-family]="t.fuente">{{ t.fuente }}</td>
+          <td><span [style.background]="t.color" class="px-3 py-1 rounded d-inline-block"></span> {{ t.color }}</td>
+          <td>{{ t.descripcion }}</td>
+          <td>{{ t.emoji }}</td>
+          <td>{{ t.nombre_usuario }}</td>
+          <td>
+            <button class="btn btn-info btn-sm me-1" (click)="editarTag(t)" title="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="eliminarTag(t.id_tag)" title="Eliminar">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

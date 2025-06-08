@@ -1,24 +1,38 @@
-<div class="container d-flex justify-content-center mt-5 border border-3">
-  <form class="p-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="form-outline mb-4">
-      <input type="email" id="form2Example1" class="form-control" formControlName="email" />
-      <label class="form-label" for="form2Example1">Email address</label>
-    </div>
-    <div class="form-outline mb-4">
-      <input type="password" id="form2Example2" class="form-control" formControlName="password" />
-      <label class="form-label" for="form2Example2">Password</label>
-    </div>
-    <div class="row mb-4">
-      <div class="col d-flex justify-content-center">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="form2Example31" formControlName="remember" />
-          <label class="form-check-label" for="form2Example31"> Remember me </label>
+<div class="card shadow mb-4 mx-auto" style="max-width: 430px;">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">Iniciar sesión</h5>
+  </div>
+  <form class="p-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="card-body">
+      <div class="mb-3">
+        <label class="form-label" for="usuarioForm">Nombre de usuario</label>
+        <input type="text" id="usuarioForm" class="form-control" formControlName="usuario" required />
+        <div *ngIf="loginForm.get('usuario')?.invalid && loginForm.get('usuario')?.touched" class="text-danger small">
+          El usuario es obligatorio.
         </div>
       </div>
-      <div class="col">
-        <a href="#!">Forgot password?</a>
+      <div class="mb-3">
+        <label class="form-label" for="pass">Contraseña</label>
+        <input type="password" id="pass" class="form-control" formControlName="password" required />
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger small">
+          La contraseña es obligatoria.
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col d-flex align-items-center">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="recordar" formControlName="remember" />
+            <label class="form-check-label" for="recordar">Recordarme</label>
+          </div>
+        </div>
+        <div class="col text-end">
+          <a href="#!">¿Olvidaste tu contraseña?</a>
+        </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="loginForm.invalid">Sign in</button>
+    <div class="card-footer bg-white border-0 d-flex flex-column gap-2">
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Iniciar sesión</button>
+      <button type="button" class="btn btn-secondary" (click)="onRegistrar()">Registrar</button>
+    </div>
   </form>
 </div>

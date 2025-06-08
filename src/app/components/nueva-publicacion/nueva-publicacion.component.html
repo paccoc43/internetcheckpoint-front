@@ -1,0 +1,70 @@
+<div class="card shadow mb-4" [ngStyle]="{
+       'background-color': publicacionForm.get('tagSeleccionado')?.value?.color || 'white',
+       'transition': 'background-color 0.3s'
+     }"
+     [style.color]="getTextoColor()">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">Nueva publicación</h5>
+  </div>
+  <form [formGroup]="publicacionForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" autocomplete="off">
+    <div class="card-body">
+      <div class="mb-3">
+        <label class="form-label">Tu vivencia</label>
+        <textarea #textareaRef
+          class="form-control"
+          formControlName="texto"
+          rows="5"
+          required
+          placeholder="Escribe aquí tu vivencia..."
+          [ngStyle]="{
+            'font-family': publicacionForm.get('tagSeleccionado')?.value?.fuente || 'inherit'
+          }"></textarea>
+        <button
+          #emojiButton
+          type="button"
+          class="btn btn-emoji mt-2"
+          (click)="mostrarPicker = !mostrarPicker"
+          tabindex="-1"
+          aria-label="Insertar emoji">
+          😊
+        </button>
+        <div *ngIf="mostrarPicker" #emojiPicker class="mt-2 position-absolute" style="z-index: 1000;">
+          <emoji-mart (emojiSelect)="agregarEmoji($event, textareaRef)"></emoji-mart>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Imágenes o vídeos</label>
+        <input type="file" class="form-control" (change)="onFileChange($event)" multiple accept="image/*,video/*">
+        <div class="form-text" [style.color]="getTextoColor()">Opcional</div>
+      </div>
+      <div class="mb-3" *ngIf="archivos && archivos.length">
+        <div *ngFor="let archivo of archivos">
+          <span>{{ archivo.name }}</span>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Tag</label>
+        <select class="form-select"
+                formControlName="tagSeleccionado"
+                required
+                [ngStyle]="{
+          'font-family': publicacionForm.get('tagSeleccionado')?.value?.fuente || 'inherit',
+        }">>
+          <option [ngValue]="null" disabled selected>Selecciona un tag</option>
+          <option *ngFor="let tag of tags"
+                  [ngValue]="tag"
+                  [style.font-family]="tag.fuente"
+                  [title]="tag.descripcion">
+            {{ tag.nombre + " " + tag.emoji }}
+          </option>
+        </select>
+        <div *ngIf="publicacionForm.get('tagSeleccionado')?.invalid && publicacionForm.get('tagSeleccionado')?.touched" class="text-danger small">
+          Selecciona un tag.
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-white border-0 d-flex justify-content-end">
+      <button class="btn btn-primary" type="submit" [disabled]="publicacionForm.invalid">Publicar</button>
+    </div>
+  </form>
+</div>

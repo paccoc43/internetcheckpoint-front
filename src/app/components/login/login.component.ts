@@ -1,19 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AuthRequest } from '../../modelos/auth-request';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  @Output() registrar = new EventEmitter<void>();
+
   loginForm: FormGroup;
 
   constructor(
@@ -23,7 +27,7 @@ export class LoginComponent {
     ) {
     this.loginForm = this.fb.group({
       // email: ['', [Validators.required, Validators.email]],
-      email: ['', Validators.required],
+      usuario: ['', Validators.required],
       password: ['', Validators.required],
       remember: [false]
     });
@@ -32,7 +36,7 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       const authRequest = new AuthRequest();
-      authRequest.usuario = this.loginForm.value.email;
+      authRequest.usuario = this.loginForm.value.usuario;
       authRequest.password = this.loginForm.value.password;
       this.authservice.autenticarUsuario(authRequest).subscribe( response => {
           this.onSuccess(response);
@@ -41,6 +45,10 @@ export class LoginComponent {
         }
       );
     }
+  }
+
+  onRegistrar() {
+    this.registrar.emit();
   }
 
   onSuccess(response: any) {

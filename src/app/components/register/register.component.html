@@ -1,1 +1,56 @@
-<p>register works!</p>
+<div class="card shadow mb-4">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">Registro de usuario</h5>
+  </div>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Nombre de usuario</label>
+          <input type="text" class="form-control" formControlName="nombre_usuario" required>
+          <div *ngIf="registerForm.get('nombre_usuario')?.invalid && registerForm.get('nombre_usuario')?.touched" class="text-danger small">
+            El nombre de usuario es obligatorio.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email" required>
+          <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger small">
+            Email inválido.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Contraseña</label>
+          <input type="password" class="form-control" formControlName="password" required>
+          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger small">
+            La contraseña es obligatoria (mínimo 6 caracteres).
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Apellidos</label>
+          <input type="text" class="form-control" formControlName="apellidos">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Sexo</label>
+          <select class="form-select" formControlName="sexo">
+            <option value="">Selecciona...</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Fecha de nacimiento</label>
+          <input type="date" class="form-control" formControlName="fecha_nacimiento" required>
+          <div *ngIf="registerForm.get('fecha_nacimiento')?.invalid && registerForm.get('fecha_nacimiento')?.touched" class="text-danger small">
+            La fecha de nacimiento es obligatoria.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-white border-0 d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" (click)="onVolver()">Volver al login</button>
+      <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Registrar</button>
+    </div>
+  </form>
+</div>

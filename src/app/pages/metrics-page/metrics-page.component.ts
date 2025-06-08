@@ -1,12 +1,26 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { CommonModule } from '@angular/common';
+import { MenuAdminComponent } from '../../components/menu-admin/menu-admin.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-metrics-page',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterModule,
+    NavbarComponent,
+    CommonModule,
+    MenuAdminComponent,
+  ],
   templateUrl: './metrics-page.component.html',
   styleUrl: './metrics-page.component.scss'
 })
 export class MetricsPageComponent {
 
+    constructor(
+      public authService: AuthService
+    ) {}
+  
 }

@@ -5,16 +5,20 @@ import { MenuComponent } from '../../components/menu/menu.component';
 import { MenuAdminComponent } from '../../components/menu-admin/menu-admin.component';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { NuevaPublicacionComponent } from '../../components/nueva-publicacion/nueva-publicacion.component';
+import { PublicacionesHomeComponent } from '../../components/publicaciones-home/publicaciones-home.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
   imports: [
+    CommonModule,
     RouterModule,
     NavbarComponent,
+    NuevaPublicacionComponent,
+    MenuAdminComponent,
     MenuComponent,
-    CommonModule,
-    MenuAdminComponent
+    PublicacionesHomeComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
