@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,10 @@ export class RegisterComponent {
   @Output() volver = new EventEmitter<void>();
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {
     this.registerForm = this.fb.group({
       nombre_usuario: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -35,8 +39,11 @@ export class RegisterComponent {
   onSubmit() {
     if (this.registerForm.valid) {
       const usuario = this.registerForm.value;
-      // Aquí puedes llamar a tu servicio para registrar el usuario
-      console.log('Usuario a registrar:', usuario);
+      this.authService.registrarUsuario(usuario).subscribe(response => {
+          console.log('Registro exitoso', response);
+          alert('Usuario registrado correctamente');
+          this.onVolver(); // Emitimos el evento para volver al login
+        });
     } else {
       this.registerForm.markAllAsTouched();
     }
