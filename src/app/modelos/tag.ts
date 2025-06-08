@@ -1,4 +1,4 @@
-export class Tag {
+export interface Tag {
   id_tag: number;
   nombre: string;
   fuente?: string;

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environment';
 import { Observable } from 'rxjs';
 import { Publicacion } from '../modelos/publicacion';
+import { Page } from '../modelos/page';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,7 @@ export class PublicacionService {
     return this.httpclient.delete<void>(`${this.urlApi}/publicaciones/${id_publicacion}`);
   }
 
-  obtenerPublicacionesPaginadas(page: number, size: number): Observable<Publicacion[]> {
-    return this.httpclient.get<Publicacion[]>(`${this.urlApi}/publicaciones?page=${page}&size=${size}`);
+  obtenerPublicacionesPaginadas(page: number, size: number): Observable<Page<Publicacion>> {
+    return this.httpclient.get<Page<Publicacion>>(`${this.urlApi}/publicaciones/pagina?page=${page}&size=${size}`);
   }
 }

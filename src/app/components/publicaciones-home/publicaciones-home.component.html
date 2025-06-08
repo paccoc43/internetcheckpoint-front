@@ -1,6 +1,6 @@
 <div *ngFor="let pub of publicaciones" class="mb-4 card p-3">
   <div class="fw-bold">{{ pub.nombre_usuario }}</div>
-  <div class="text-muted small">{{ pub.fecha_publicacion | date:'short' }}</div>
+  <div class="text-muted small">{{ pub.fecha_publicacion | date:'shortDate' }}</div>
   <div>{{ pub.contenido }}</div>
 </div>
 <div *ngIf="cargando" class="text-center my-3">

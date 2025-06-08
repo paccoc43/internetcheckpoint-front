@@ -1,4 +1,4 @@
-export class Comentario {
+export interface Comentario {
   id_comentario: number;
   id_publicacion: number;
   nombre_usuario: string;

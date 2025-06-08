@@ -25,18 +25,20 @@ export class PublicacionesHomeComponent implements OnInit {
     this.cargarMas();
   }
 
+  // TODO: arreglar el scroll para que cargue correctamente las publicaciones
   @HostListener('window:scroll', [])
   onScroll(): void {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100 && !this.cargando && !this.fin) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2 && !this.cargando && !this.fin) {
       this.cargarMas();
     }
   }
 
   cargarMas() {
     this.cargando = true;
-    this.publicacionService.obtenerPublicacionesPaginadas(this.page, this.size).subscribe(res => {
-      if (res.length < this.size) this.fin = true;
-      this.publicaciones = this.publicaciones.concat(res);
+    this.publicacionService.obtenerPublicacionesPaginadas(this.page, this.size).subscribe((res) => {
+      const nuevas = res.content || [];
+      if (nuevas.length < this.size) this.fin = true;
+      this.publicaciones = this.publicaciones.concat(nuevas);
       this.page++;
       this.cargando = false;
     });
