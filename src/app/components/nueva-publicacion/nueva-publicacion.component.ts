@@ -55,6 +55,23 @@ export class NuevaPublicacionComponent implements OnInit {
     return '';
   }
 
+  getTextoColor(): string {
+    const tag = this.publicacionForm.get('tagSeleccionado')?.value;
+    if (!tag?.color) return 'black';
+
+    // Extrae los valores RGB del color hexadecimal
+    const hex = tag.color.replace('#', '');
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+
+    // Calcula el brillo (luminancia)
+    const luminancia = (0.299 * r + 0.587 * g + 0.114 * b);
+
+    // Si es oscuro, texto blanco; si es claro, texto negro
+    return luminancia < 128 ? 'white' : 'black';
+  }
+
   onSubmit() {
     if (this.publicacionForm.invalid) {
       this.publicacionForm.markAllAsTouched();
