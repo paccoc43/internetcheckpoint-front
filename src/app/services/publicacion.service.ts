@@ -39,4 +39,8 @@ export class PublicacionService {
   eliminarPublicacion(id_publicacion: number): Observable<void> {
     return this.httpclient.delete<void>(`${this.urlApi}/publicaciones/${id_publicacion}`);
   }
+
+  obtenerPublicacionesPaginadas(page: number, size: number): Observable<Publicacion[]> {
+    return this.httpclient.get<Publicacion[]>(`${this.urlApi}/publicaciones?page=${page}&size=${size}`);
+  }
 }

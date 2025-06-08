@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { Tag } from '../../modelos/tag';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { Utilidades } from '../../utils/utilidades';
 
 @Component({
   selector: 'app-editor-tags',
@@ -36,7 +37,7 @@ export class EditorTagsComponent implements OnInit {
   ];
 
   constructor(
-    private tagService: TagService
+    private tagService: TagService,
   ) {}
 
   ngOnInit(): void {}
@@ -49,7 +50,7 @@ export class EditorTagsComponent implements OnInit {
       color: '',
       descripcion: '',
       emoji: '',
-      nombre_usuario: this.obtenerNombreUsuario()
+      nombre_usuario: Utilidades.obtenerNombreUsuario()
     };
   }
 
@@ -74,15 +75,6 @@ export class EditorTagsComponent implements OnInit {
   cancelar() {
     this.tag = this.nuevaTag();
     this.editando = false;
-  }
-
-  obtenerNombreUsuario(): string {
-    const usuario = localStorage.getItem('usuario');
-    if (usuario) {
-      const datosUsuario = JSON.parse(usuario);
-      return datosUsuario.nombre_usuario || '';
-    }
-    return '';
   }
 
   seleccionarEmoji(event: any) {

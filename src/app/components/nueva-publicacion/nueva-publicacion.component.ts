@@ -5,8 +5,9 @@ import { Tag } from '../../modelos/tag';
 import { TagService } from '../../services/tag.service';
 import { PublicacionService } from '../../services/publicacion.service';
 import { Publicacion } from '../../modelos/publicacion';
-import { animate } from 'animejs';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { Utilidades } from '../../utils/utilidades';
+import { animate } from 'animejs';
 
 @Component({
   selector: 'app-nueva-publicacion',
@@ -31,7 +32,7 @@ export class NuevaPublicacionComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private tagService: TagService,
-    private publicacionService: PublicacionService
+    private publicacionService: PublicacionService,
   ) {
     this.publicacionForm = this.fb.group({
       texto: ['', Validators.required],
@@ -51,15 +52,6 @@ export class NuevaPublicacionComponent implements OnInit {
     if (event.target.files && event.target.files.length > 0) {
       this.archivos = Array.from(event.target.files);
     }
-  }
-
-  obtenerNombreUsuario(): string {
-    const usuario = localStorage.getItem('usuario');
-    if (usuario) {
-      const datosUsuario = JSON.parse(usuario);
-      return datosUsuario.nombre_usuario || '';
-    }
-    return '';
   }
 
   agregarEmoji(event: any, textarea: HTMLTextAreaElement) {
@@ -100,19 +92,10 @@ export class NuevaPublicacionComponent implements OnInit {
 
   getTextoColor(): string {
     const tag = this.publicacionForm.get('tagSeleccionado')?.value;
-    if (!tag?.color) return 'black';
-
-    // Extrae los valores RGB del color hexadecimal
-    const hex = tag.color.replace('#', '');
-    const r = parseInt(hex.substring(0, 2), 16);
-    const g = parseInt(hex.substring(2, 4), 16);
-    const b = parseInt(hex.substring(4, 6), 16);
-
-    // Calcula el brillo (luminancia)
-    const luminancia = (0.299 * r + 0.587 * g + 0.114 * b);
-
-    // Si es oscuro, texto blanco; si es claro, texto negro
-    return luminancia < 128 ? 'white' : 'black';
+    if (!tag?.color) {
+      return 'black'; // o el color por defecto que prefieras
+    }
+    return Utilidades.calculaLuminancia(tag.color);
   }
 
   onSubmit() {
@@ -126,7 +109,7 @@ export class NuevaPublicacionComponent implements OnInit {
       id_publicacion: 0,
       fecha_publicacion: '',
       contenido: formValue.texto,
-      nombre_usuario: this.obtenerNombreUsuario(),
+      nombre_usuario: Utilidades.obtenerNombreUsuario(),
       id_tag: formValue.tagSeleccionado.id_tag
     };
 
