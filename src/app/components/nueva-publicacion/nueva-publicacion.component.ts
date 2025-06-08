@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Tag } from '../../modelos/tag';
@@ -6,21 +6,27 @@ import { TagService } from '../../services/tag.service';
 import { PublicacionService } from '../../services/publicacion.service';
 import { Publicacion } from '../../modelos/publicacion';
 import { animate } from 'animejs';
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 
 @Component({
   selector: 'app-nueva-publicacion',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PickerComponent
   ],
   templateUrl: './nueva-publicacion.component.html',
   styleUrl: './nueva-publicacion.component.scss'
 })
 export class NuevaPublicacionComponent implements OnInit {
+  @ViewChild('emojiPicker') emojiPickerRef!: ElementRef;
+  @ViewChild('emojiButton') emojiButtonRef!: ElementRef;
+
   publicacionForm: FormGroup;
   archivos: File[] = [];
   tags: Tag[] = [];
+  mostrarPicker = false;
 
   constructor(
     private fb: FormBuilder,
@@ -55,6 +61,42 @@ export class NuevaPublicacionComponent implements OnInit {
     }
     return '';
   }
+
+  agregarEmoji(event: any, textarea: HTMLTextAreaElement) {
+    const emoji = event.emoji?.native || event.emoji || event.native;
+    const control = this.publicacionForm.get('texto');
+    const textoActual = control?.value || '';
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+
+    // Inserta el emoji en la posición del cursor
+    const nuevoTexto = textoActual.slice(0, start) + emoji + textoActual.slice(end);
+    control?.setValue(nuevoTexto);
+
+    // Vuelve a enfocar el textarea y coloca el cursor después del emoji insertado
+    setTimeout(() => {
+      textarea.focus();
+      const cursorPos = start + emoji.length;
+      textarea.setSelectionRange(cursorPos, cursorPos);
+    }, 0);
+
+    // No cerrar el picker aquí
+    // this.mostrarPicker = false;
+  }
+
+  @HostListener('document:mousedown', ['$event'])
+  handleClickOutside(event: MouseEvent) {
+  if (this.mostrarPicker) {
+    const pickerEl = this.emojiPickerRef?.nativeElement;
+    const buttonEl = this.emojiButtonRef?.nativeElement;
+    if (
+      pickerEl && !pickerEl.contains(event.target) &&
+      buttonEl && !buttonEl.contains(event.target)
+    ) {
+      this.mostrarPicker = false;
+    }
+  }
+}
 
   getTextoColor(): string {
     const tag = this.publicacionForm.get('tagSeleccionado')?.value;

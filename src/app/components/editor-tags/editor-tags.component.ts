@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { TagService } from '../../services/tag.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,6 +21,9 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
   styleUrl: './editor-tags.component.scss'
 })
 export class EditorTagsComponent implements OnInit {
+  @ViewChild('emojiPicker') emojiPickerRef!: ElementRef;
+  @ViewChild('emojiButton') emojiButtonRef!: ElementRef;
+
   tag: Tag = this.nuevaTag();
   editando: boolean = false;
   mostrarPicker: boolean = false;
@@ -85,5 +88,23 @@ export class EditorTagsComponent implements OnInit {
   seleccionarEmoji(event: any) {
     this.tag.emoji = event.emoji.native;
     this.mostrarPicker = false;
+  }
+
+  @HostListener('document:mousedown', ['$event'])
+  handleClickOutside(event: MouseEvent) {
+    if (this.mostrarPicker) {
+      const pickerEl = this.emojiPickerRef?.nativeElement;
+      const buttonEl = this.emojiButtonRef?.nativeElement;
+      if (
+        pickerEl && !pickerEl.contains(event.target) &&
+        buttonEl && !buttonEl.contains(event.target)
+      ) {
+        this.mostrarPicker = false;
+      }
+    }
+  }
+
+  eliminarEmoji() {
+    this.tag.emoji = '';
   }
 }

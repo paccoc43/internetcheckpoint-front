@@ -8,19 +8,29 @@
   </div>
   <form [formGroup]="publicacionForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" autocomplete="off">
     <div class="card-body">
-      <div class="mb-3" >
-        <label class="form-label" >Tu vivencia</label>
-        <textarea class="form-control"
-                  formControlName="texto"
-                  rows="5"
-                  required
-                  placeholder="Escribe aquí tu vivencia..."
-                  [ngStyle]="{
-            'font-family': publicacionForm.get('tagSeleccionado')?.value?.fuente || 'inherit',
+      <div class="mb-3">
+        <label class="form-label">Tu vivencia</label>
+        <textarea #textareaRef
+          class="form-control"
+          formControlName="texto"
+          rows="5"
+          required
+          placeholder="Escribe aquí tu vivencia..."
+          [ngStyle]="{
+            'font-family': publicacionForm.get('tagSeleccionado')?.value?.fuente || 'inherit'
           }"></textarea>
-        <!-- <div *ngIf="publicacionForm.get('texto')?.invalid && publicacionForm.get('texto')?.touched" class="text-danger small">
-          El texto es obligatorio.
-        </div> -->
+        <button
+          #emojiButton
+          type="button"
+          class="btn btn-emoji mt-2"
+          (click)="mostrarPicker = !mostrarPicker"
+          tabindex="-1"
+          aria-label="Insertar emoji">
+          😊
+        </button>
+        <div *ngIf="mostrarPicker" #emojiPicker class="mt-2 position-absolute" style="z-index: 1000;">
+          <emoji-mart (emojiSelect)="agregarEmoji($event, textareaRef)"></emoji-mart>
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Imágenes o vídeos</label>
