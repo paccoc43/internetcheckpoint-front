@@ -2,15 +2,23 @@
   <div class="card-header bg-primary text-white">
     <h5 class="mb-0">Nueva publicación</h5>
   </div>
-  <form (ngSubmit)="onSubmit()" #publicacionForm="ngForm" enctype="multipart/form-data">
+  <form [formGroup]="publicacionForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" autocomplete="off">
     <div class="card-body">
       <div class="mb-3">
         <label class="form-label">Tu vivencia</label>
-        <textarea class="form-control" [(ngModel)]="texto" name="texto" rows="5" required placeholder="Escribe aquí tu vivencia..."></textarea>
+        <textarea class="form-control"
+                  formControlName="texto"
+                  rows="5"
+                  required
+                  placeholder="Escribe aquí tu vivencia..."></textarea>
+        <div *ngIf="publicacionForm.get('texto')?.invalid && publicacionForm.get('texto')?.touched" class="text-danger small">
+          El texto es obligatorio.
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label">Imágenes o vídeos</label>
         <input type="file" class="form-control" (change)="onFileChange($event)" multiple accept="image/*,video/*">
+        <div class="form-text">Opcional</div>
       </div>
       <div class="mb-3" *ngIf="archivos && archivos.length">
         <div *ngFor="let archivo of archivos">
@@ -19,14 +27,24 @@
       </div>
       <div class="mb-3">
         <label class="form-label">Tag</label>
-        <select class="form-select" [(ngModel)]="tagSeleccionado" name="tagSeleccionado" required>
+        <select class="form-select"
+                formControlName="tagSeleccionado"
+                required>
           <option [ngValue]="null" disabled selected>Selecciona un tag</option>
-          <option *ngFor="let tag of tags" [ngValue]="tag.nombre" [style.font-family]="tag.fuente" [title]="tag.descripcion">{{ tag.nombre + " " + tag.emoji}}</option>
+          <option *ngFor="let tag of tags"
+                  [ngValue]="tag"
+                  [style.font-family]="tag.fuente"
+                  [title]="tag.descripcion">
+            {{ tag.nombre + " " + tag.emoji }}
+          </option>
         </select>
+        <div *ngIf="publicacionForm.get('tagSeleccionado')?.invalid && publicacionForm.get('tagSeleccionado')?.touched" class="text-danger small">
+          Selecciona un tag.
+        </div>
       </div>
     </div>
     <div class="card-footer bg-white border-0 d-flex justify-content-end">
-      <button class="btn btn-primary" type="submit" [disabled]="!texto">Publicar</button>
+      <button class="btn btn-primary" type="submit" [disabled]="publicacionForm.invalid">Publicar</button>
     </div>
   </form>
 </div>
