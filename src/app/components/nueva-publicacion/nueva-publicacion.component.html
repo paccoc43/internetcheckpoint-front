@@ -17,6 +17,13 @@
           <span>{{ archivo.name }}</span>
         </div>
       </div>
+      <div class="mb-3">
+        <label class="form-label">Tag</label>
+        <select class="form-select" [(ngModel)]="tagSeleccionado" name="tagSeleccionado" required>
+          <option [ngValue]="null" disabled selected>Selecciona un tag</option>
+          <option *ngFor="let tag of tags" [ngValue]="tag.nombre" [style.font-family]="tag.fuente" [title]="tag.descripcion">{{ tag.nombre + " " + tag.emoji}}</option>
+        </select>
+      </div>
     </div>
     <div class="card-footer bg-white border-0 d-flex justify-content-end">
       <button class="btn btn-primary" type="submit" [disabled]="!texto">Publicar</button>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Tag } from '../../modelos/tag';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,14 +14,22 @@ import { TagService } from '../../services/tag.service';
   templateUrl: './lista-tags.component.html',
   styleUrl: './lista-tags.component.scss'
 })
-export class ListaTagsComponent {
+export class ListaTagsComponent implements OnInit, OnChanges {
   tags: Tag[] = [];
 
-  constructor(private tagService: TagService) {}
+  constructor(
+    private tagService: TagService
+  ) {}
 
   ngOnInit(): void {
     this.cargarTags();
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+      // if (changes['filtroUsuario']) {
+      //   this.obtenerTags();
+      // }
+    }
 
   cargarTags() {
     this.tagService.obtenerListaTags().subscribe(tags => this.tags = tags);
