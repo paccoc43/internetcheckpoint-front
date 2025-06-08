@@ -6,17 +6,19 @@ import { MenuAdminComponent } from '../../components/menu-admin/menu-admin.compo
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { NuevaPublicacionComponent } from '../../components/nueva-publicacion/nueva-publicacion.component';
+import { MostrarPublicacionesComponent } from '../../components/mostrar-publicaciones/mostrar-publicaciones.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
   imports: [
+    CommonModule,
     RouterModule,
     NavbarComponent,
     NuevaPublicacionComponent,
+    MenuAdminComponent,
     MenuComponent,
-    CommonModule,
-    MenuAdminComponent
+    MostrarPublicacionesComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
