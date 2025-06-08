@@ -6,7 +6,7 @@ import { MenuAdminComponent } from '../../components/menu-admin/menu-admin.compo
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { NuevaPublicacionComponent } from '../../components/nueva-publicacion/nueva-publicacion.component';
-import { MostrarPublicacionesComponent } from '../../components/mostrar-publicaciones/mostrar-publicaciones.component';
+import { PublicacionesHomeComponent } from '../../components/publicaciones-home/publicaciones-home.component';
 
 @Component({
   selector: 'app-home-page',
@@ -18,7 +18,7 @@ import { MostrarPublicacionesComponent } from '../../components/mostrar-publicac
     NuevaPublicacionComponent,
     MenuAdminComponent,
     MenuComponent,
-    MostrarPublicacionesComponent
+    PublicacionesHomeComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'

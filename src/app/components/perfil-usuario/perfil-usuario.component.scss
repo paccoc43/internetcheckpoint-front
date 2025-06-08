@@ -1,0 +1,21 @@
+.perfil-img {
+  object-fit: cover;
+  border: 1px solid #bbb;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.perfil-edit-btn {
+  cursor: pointer;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+
+.perfil-card {
+  max-width: 600px;
+  margin: 0 auto;
+}

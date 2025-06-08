@@ -1,1 +1,26 @@
-<p>perfil-usuario works!</p>
+<div class="card shadow mb-4 p-3 perfil-card">
+  <div class="row g-3 align-items-center">
+    <div class="col-auto d-flex flex-column align-items-center position-relative">
+      <div class="position-relative">
+        <img [src]="imagenPerfil" alt="Foto de perfil" class="rounded-circle perfil-img" width="110" height="110">
+        <label class="btn btn-light btn-sm rounded-circle perfil-edit-btn position-absolute bottom-0 end-0" style="border: 1px solid #ccc;">
+          <input type="file" accept="image/*" (change)="onCambiarImagen($event)" hidden>
+          <span class="material-icons" style="font-size: 1.2rem;">edit</span>
+        </label>
+      </div>
+      <h4 class="mb-1 mt-3 text-center w-100">
+        {{ usuario?.nombre_usuario }}
+      </h4>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col-12 col-md-12">
+          <div><strong>Email:</strong> {{ usuario?.email }}</div>
+          <div><strong>Apellidos:</strong> {{ usuario?.apellidos }}</div>
+          <div><strong>Sexo:</strong> {{ usuario?.sexo }}</div>
+          <div><strong>Fecha de nacimiento:</strong> {{ usuario?.fecha_nacimiento | date:'longDate' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
