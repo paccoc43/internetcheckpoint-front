@@ -44,4 +44,10 @@ export class PublicacionService {
   obtenerPublicacionesPaginadas(page: number, size: number): Observable<Page<Publicacion>> {
     return this.httpclient.get<Page<Publicacion>>(`${this.urlApi}/publicaciones/pagina?page=${page}&size=${size}`);
   }
+
+  obtenerPublicacionesPerfilPaginadas(nombreUsuario: string, page: number, size: number): Observable<Page<Publicacion>> {
+    return this.httpclient.get<Page<Publicacion>>(
+      `${this.urlApi}/publicaciones/usuario/${nombreUsuario}?page=${page}&size=${size}`
+    );
+  }
 }
