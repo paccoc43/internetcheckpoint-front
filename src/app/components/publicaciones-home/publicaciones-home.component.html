@@ -12,6 +12,12 @@
   <div class="text-muted small">{{ pub.fecha_publicacion | date:'shortDate' }}</div>
   <div [ngStyle]="{'font-family': pub.tag.fuente || 'inherit'}">{{ pub.contenido }}</div>
 </div>
+<!-- Botón al final de la lista -->
+<div class="text-center my-4" *ngIf="!fin && !cargando">
+  <button (click)="cargarMas()" class="btn btn-primary rounded-circle" style="width: 48px; height: 48px;">
+    <span style="font-size: 1.5rem;">+</span>
+  </button>
+</div>
 <div *ngIf="cargando" class="text-center my-3">
   <span>Cargando...</span>
 </div>

@@ -25,14 +25,6 @@ export class PublicacionesHomeComponent implements OnInit {
     this.cargarMas();
   }
 
-  // TODO: arreglar el scroll para que cargue correctamente las publicaciones
-  @HostListener('window:scroll', [])
-  onScroll(): void {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2 && !this.cargando && !this.fin) {
-      this.cargarMas();
-    }
-  }
-
   cargarMas() {
     this.cargando = true;
     this.publicacionService.obtenerPublicacionesPaginadas(this.page, this.size).subscribe((res) => {
