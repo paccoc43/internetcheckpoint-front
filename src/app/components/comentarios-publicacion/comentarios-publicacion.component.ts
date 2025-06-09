@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ComentarioService } from '../../services/comentario.service';
 import { Comentario } from '../../modelos/comentario';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-comentarios-publicacion',
@@ -18,7 +19,8 @@ export class ComentariosPublicacionComponent implements OnInit {
   cargando = false;
 
   constructor(
-    private comentarioService: ComentarioService
+    private comentarioService: ComentarioService,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -34,4 +36,12 @@ export class ComentariosPublicacionComponent implements OnInit {
       this.cargando = false;
     });
   }
+
+  eliminarComentario(id_comentario: number) {
+  if (confirm('¿Seguro que deseas eliminar este comentario?')) {
+    this.comentarioService.eliminarComentario(id_comentario).subscribe(() => {
+      this.cargarComentarios();
+    });
+  }
+}
 }

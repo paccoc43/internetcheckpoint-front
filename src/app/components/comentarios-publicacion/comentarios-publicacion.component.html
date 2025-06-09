@@ -1,9 +1,15 @@
 <div *ngIf="cargando" class="text-center text-muted">Cargando comentarios...</div>
 <div *ngIf="!cargando && comentarios.length === 0" class="text-center text-muted">Sin comentarios.</div>
 <ul class="list-group list-group-flush" *ngIf="comentarios.length > 0">
-  <li class="list-group-item" *ngFor="let comentario of comentarios">
+  <li class="list-group-item position-relative" *ngFor="let comentario of comentarios">
     <div class="fw-bold">{{ comentario.nombre_usuario }}</div>
     <div class="small text-muted">{{ comentario.fecha_comentario | date:'short' }}</div>
     <div>{{ comentario.contenido }}</div>
+    <button *ngIf="authService.isAdmin() === 'ADMIN'"
+            class="btn btn-danger btn-sm position-absolute"
+            style="bottom: 8px; right: 8px;"
+            (click)="eliminarComentario(comentario.id_comentario)">
+      Eliminar
+    </button>
   </li>
 </ul>
