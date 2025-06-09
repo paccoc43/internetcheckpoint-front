@@ -5,6 +5,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { TagsPageComponent } from './pages/tags-page/tags-page.component';
 import { MetricsPageComponent } from './pages/metrics-page/metrics-page.component';
+import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 
 export const routes: Routes = [
     { 
@@ -22,9 +23,13 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
     { 
-        path: 'profile',
+        path: 'perfil',
         component: ProfilePageComponent,
         pathMatch: 'full'
+    },
+        { 
+        path: 'perfil/:nombre_usuario',
+        component: ProfilePageComponent
     },
     { 
         path: 'editor-tags',

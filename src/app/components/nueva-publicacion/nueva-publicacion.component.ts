@@ -110,7 +110,7 @@ export class NuevaPublicacionComponent implements OnInit {
       fecha_publicacion: '',
       contenido: formValue.texto,
       nombre_usuario: Utilidades.obtenerNombreUsuario(),
-      id_tag: formValue.tagSeleccionado.id_tag
+      tag: formValue.tagSeleccionado
     };
 
     // Si necesitas enviar archivos, usa FormData. Si no, puedes enviar el objeto directamente.

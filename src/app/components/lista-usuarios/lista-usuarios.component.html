@@ -33,8 +33,7 @@
           <td>{{usuario.email}}</td>
           <td>
             <button class="btn btn-info btn-sm me-1"
-              (click)="editarUsuario(usuario.nombre_usuario)"
-              [attr.data-nombre]="usuario.nombre_usuario"
+              [routerLink]="['/perfil', usuario.nombre_usuario]"
               title="Editar">
               <mat-icon>edit</mat-icon>
             </button>
