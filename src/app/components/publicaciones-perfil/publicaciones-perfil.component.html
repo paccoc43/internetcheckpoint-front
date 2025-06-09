@@ -1,1 +1,32 @@
-<p>publicaciones-perfil works!</p>
+<div *ngFor="let pub of publicaciones" class="mb-4 card p-3"
+     [ngStyle]="{'border-left': pub.tag.color ? '8px solid ' + pub.tag.color : ''}"
+     [attr.title]="pub.tag.descripcion">
+  <div class="d-flex align-items-center mb-2">
+    <span class="fw-bold me-2">{{ pub.nombre_usuario }}</span>
+    <span *ngIf="pub.tag.emoji" class="me-1" style="font-size: 1.5rem;">{{ pub.tag.emoji }}</span>
+    <span class="fw-bold"
+          [ngStyle]="{'color': pub.tag.color || 'inherit', 'font-family': pub.tag.fuente || 'inherit'}">
+      {{ pub.tag.nombre }}
+    </span>
+  </div>
+  <div class="text-muted small">{{ pub.fecha_publicacion | date:'shortDate' }}</div>
+  <div [ngStyle]="{'font-family': pub.tag.fuente || 'inherit'}">{{ pub.contenido }}</div>
+    <div *ngIf="pub.imagenUrl" class="my-2 text-center">
+      <img [src]="formateaUrl(pub.imagenUrl)" alt="Imagen de la publicación" class="img-fluid rounded" style="max-height: 350px; object-fit: contain;">
+    </div>
+  <app-comentarios-publicacion #comentariosPub [idPublicacion]="pub.id_publicacion"></app-comentarios-publicacion>
+  <app-nuevo-comentario [idPublicacion]="pub.id_publicacion" (comentarioCreado)="comentariosPub.cargarComentarios()"></app-nuevo-comentario>
+</div>
+<!-- Botón al final de la lista -->
+<div class="text-center my-4" *ngIf="!fin && !cargando">
+  <button (click)="cargarMas()" class="btn btn-outline-primary rounded-circle" style="width: 48px; height: 48px;">
+    <span style="font-size: 1.5rem;">+</span>
+  </button>
+</div>
+
+<div *ngIf="cargando" class="text-center my-3">
+  <span>Cargando...</span>
+</div>
+<div *ngIf="fin && publicaciones.length" class="text-center my-3 text-muted">
+  <span>No hay más publicaciones</span>
+</div>

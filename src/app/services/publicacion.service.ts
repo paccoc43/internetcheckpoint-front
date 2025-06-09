@@ -31,6 +31,10 @@ export class PublicacionService {
     return this.httpclient.post<Publicacion>(`${this.urlApi}/publicaciones`, publicacion);
   }
 
+  crearPublicacionArchivos(formData: FormData): Observable<any> {
+    return this.httpclient.post(`${this.urlApi}/publicaciones/archivos`, formData);
+  }
+
   // Actualizar una publicación existente
   modificarPublicacion(publicacion: Publicacion): Observable<Publicacion> {
     return this.httpclient.put<Publicacion>(`${this.urlApi}/publicaciones/${publicacion.id_publicacion}`, publicacion);
@@ -43,5 +47,11 @@ export class PublicacionService {
 
   obtenerPublicacionesPaginadas(page: number, size: number): Observable<Page<Publicacion>> {
     return this.httpclient.get<Page<Publicacion>>(`${this.urlApi}/publicaciones/pagina?page=${page}&size=${size}`);
+  }
+
+  obtenerPublicacionesPerfilPaginadas(nombreUsuario: string, page: number, size: number): Observable<Page<Publicacion>> {
+    return this.httpclient.get<Page<Publicacion>>(
+      `${this.urlApi}/publicaciones/usuario/${nombreUsuario}?page=${page}&size=${size}`
+    );
   }
 }

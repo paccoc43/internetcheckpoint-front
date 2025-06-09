@@ -110,7 +110,7 @@ export class NuevaPublicacionComponent implements OnInit {
       fecha_publicacion: '',
       contenido: formValue.texto,
       nombre_usuario: Utilidades.obtenerNombreUsuario(),
-      id_tag: formValue.tagSeleccionado.id_tag
+      tag: formValue.tagSeleccionado 
     };
 
     // Si necesitas enviar archivos, usa FormData. Si no, puedes enviar el objeto directamente.
@@ -118,13 +118,14 @@ export class NuevaPublicacionComponent implements OnInit {
       const formData = new FormData();
       formData.append('texto', formValue.texto);
       formData.append('tag', formValue.tagSeleccionado.id_tag.toString());
+      formData.append('nombre_usuario', Utilidades.obtenerNombreUsuario());
       this.archivos.forEach((archivo) => {
         formData.append('archivos', archivo);
       });
       console.log('Enviando publicación con archivos:', formData);
-      // this.publicacionService.crearPublicacionArchivos(formData).subscribe(response => {
-      //   alert('Publicación enviada con éxito');
-      // });
+      this.publicacionService.crearPublicacionArchivos(formData).subscribe(response => {
+        alert('Publicación enviada con éxito');
+      });
     } else {
       this.publicacionService.crearPublicacion(publicacion).subscribe(response => {
         alert('Publicación enviada con éxito');

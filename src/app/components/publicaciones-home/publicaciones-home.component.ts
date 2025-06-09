@@ -2,12 +2,17 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Publicacion } from '../../modelos/publicacion';
 import { CommonModule } from '@angular/common';
 import { PublicacionService } from '../../services/publicacion.service';
+import { ComentariosPublicacionComponent } from '../comentarios-publicacion/comentarios-publicacion.component';
+import { NuevoComentarioComponent } from '../nuevo-comentario/nuevo-comentario.component';
+import { Utilidades } from '../../utils/utilidades';
 
 @Component({
   selector: 'app-publicaciones-home',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    ComentariosPublicacionComponent,
+    NuevoComentarioComponent,
   ],
   templateUrl: './publicaciones-home.component.html',
   styleUrl: './publicaciones-home.component.scss'
@@ -25,14 +30,6 @@ export class PublicacionesHomeComponent implements OnInit {
     this.cargarMas();
   }
 
-  // TODO: arreglar el scroll para que cargue correctamente las publicaciones
-  @HostListener('window:scroll', [])
-  onScroll(): void {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2 && !this.cargando && !this.fin) {
-      this.cargarMas();
-    }
-  }
-
   cargarMas() {
     this.cargando = true;
     this.publicacionService.obtenerPublicacionesPaginadas(this.page, this.size).subscribe((res) => {
@@ -42,5 +39,19 @@ export class PublicacionesHomeComponent implements OnInit {
       this.page++;
       this.cargando = false;
     });
+  }
+
+  formateaUrl(ruta: string): string {
+    // Si la ruta ya es una URL pública, solo retorna la ruta
+    if (ruta.startsWith('http')) return ruta;
+    // Normaliza las barras
+    const rutaNormalizada = ruta.replace(/\\/g, '/');
+    // Busca la subruta /uploads/
+    const idx = rutaNormalizada.indexOf('/uploads/');
+    if (idx !== -1) {
+      // Cambia el puerto si tu backend es diferente
+      return `http://localhost:8080${rutaNormalizada.substring(idx)}`;
+    }
+    return rutaNormalizada;
   }
 }

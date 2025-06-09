@@ -6,6 +6,7 @@ import { MenuAdminComponent } from '../../components/menu-admin/menu-admin.compo
 import { AuthService } from '../../services/auth.service';
 import { EditorTagsComponent } from '../../components/editor-tags/editor-tags.component';
 import { ListaTagsComponent } from '../../components/lista-tags/lista-tags.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-tags-page',
@@ -16,7 +17,8 @@ import { ListaTagsComponent } from '../../components/lista-tags/lista-tags.compo
     CommonModule,
     MenuAdminComponent,
     EditorTagsComponent,
-    ListaTagsComponent
+    ListaTagsComponent,
+    FooterComponent
   ],
   templateUrl: './tags-page.component.html',
   styleUrl: './tags-page.component.scss'
