@@ -118,6 +118,7 @@ export class NuevaPublicacionComponent implements OnInit {
       const formData = new FormData();
       formData.append('texto', formValue.texto);
       formData.append('tag', formValue.tagSeleccionado.id_tag.toString());
+      formData.append('nombre_usuario', Utilidades.obtenerNombreUsuario());
       this.archivos.forEach((archivo) => {
         formData.append('archivos', archivo);
       });

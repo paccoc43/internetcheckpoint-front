@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PublicacionService } from '../../services/publicacion.service';
 import { ComentariosPublicacionComponent } from '../comentarios-publicacion/comentarios-publicacion.component';
 import { NuevoComentarioComponent } from '../nuevo-comentario/nuevo-comentario.component';
+import { Utilidades } from '../../utils/utilidades';
 
 @Component({
   selector: 'app-publicaciones-home',
@@ -11,7 +12,7 @@ import { NuevoComentarioComponent } from '../nuevo-comentario/nuevo-comentario.c
   imports: [
     CommonModule,
     ComentariosPublicacionComponent,
-    NuevoComentarioComponent
+    NuevoComentarioComponent,
   ],
   templateUrl: './publicaciones-home.component.html',
   styleUrl: './publicaciones-home.component.scss'
@@ -38,5 +39,19 @@ export class PublicacionesHomeComponent implements OnInit {
       this.page++;
       this.cargando = false;
     });
+  }
+
+  formateaUrl(ruta: string): string {
+    // Si la ruta ya es una URL pública, solo retorna la ruta
+    if (ruta.startsWith('http')) return ruta;
+    // Normaliza las barras
+    const rutaNormalizada = ruta.replace(/\\/g, '/');
+    // Busca la subruta /uploads/
+    const idx = rutaNormalizada.indexOf('/uploads/');
+    if (idx !== -1) {
+      // Cambia el puerto si tu backend es diferente
+      return `http://localhost:8080${rutaNormalizada.substring(idx)}`;
+    }
+    return rutaNormalizada;
   }
 }

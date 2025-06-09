@@ -5,5 +5,6 @@ export interface Publicacion {
   fecha_publicacion: string;
   contenido: string;
   nombre_usuario: string;
+  imagenUrl?: string;
   tag: Tag;
 }
