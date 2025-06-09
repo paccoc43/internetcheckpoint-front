@@ -25,6 +25,10 @@ export class ComentarioService {
     return this.httpclient.get<Comentario>(`${this.urlApi}/comentarios/${id_comentario}`);
   }
 
+  obtenerComentariosPorPublicacion(id_publicacion: number): Observable<Comentario[]> {
+    return this.httpclient.get<Comentario[]>(`${this.urlApi}/comentarios/publicacion/${id_publicacion}`);
+  }
+
   // Crear un nuevo comentario
   crearComentario(comentario: Comentario): Observable<Comentario> {
     return this.httpclient.post<Comentario>(`${this.urlApi}/comentarios`, comentario);

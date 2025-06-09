@@ -3,11 +3,17 @@ import { CommonModule } from '@angular/common';
 import { PublicacionService } from '../../services/publicacion.service';
 import { Publicacion } from '../../modelos/publicacion';
 import { Utilidades } from '../../utils/utilidades';
+import { ComentariosPublicacionComponent } from '../comentarios-publicacion/comentarios-publicacion.component';
+import { NuevoComentarioComponent } from '../nuevo-comentario/nuevo-comentario.component';
 
 @Component({
   selector: 'app-publicaciones-perfil',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    ComentariosPublicacionComponent,
+    NuevoComentarioComponent
+  ],
   templateUrl: './publicaciones-perfil.component.html',
   styleUrl: './publicaciones-perfil.component.scss'
 })

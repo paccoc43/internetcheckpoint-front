@@ -2,12 +2,16 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Publicacion } from '../../modelos/publicacion';
 import { CommonModule } from '@angular/common';
 import { PublicacionService } from '../../services/publicacion.service';
+import { ComentariosPublicacionComponent } from '../comentarios-publicacion/comentarios-publicacion.component';
+import { NuevoComentarioComponent } from '../nuevo-comentario/nuevo-comentario.component';
 
 @Component({
   selector: 'app-publicaciones-home',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    ComentariosPublicacionComponent,
+    NuevoComentarioComponent
   ],
   templateUrl: './publicaciones-home.component.html',
   styleUrl: './publicaciones-home.component.scss'

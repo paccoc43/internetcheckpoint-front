@@ -1,1 +1,9 @@
-<p>nuevo-comentario works!</p>
+<form (ngSubmit)="enviarComentario()" class="d-flex align-items-center gap-2 mt-2">
+  <input type="text" [(ngModel)]="contenido" name="contenido" class="form-control" placeholder="Escribe un comentario..." [disabled]="cargando">
+  <button type="submit" class="btn btn-success btn-sm" [disabled]="cargando || !contenido.trim()">
+    <span *ngIf="!cargando">Comentar</span>
+    <span *ngIf="cargando" class="spinner-border spinner-border-sm"></span>
+  </button>
+</form>
+<div *ngIf="error" class="text-danger small mt-1">{{ error }}</div>
+<div *ngIf="exito" class="text-success small mt-1">¡Comentario enviado!</div>

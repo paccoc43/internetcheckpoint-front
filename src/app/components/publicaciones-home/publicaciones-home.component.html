@@ -11,6 +11,8 @@
   </div>
   <div class="text-muted small">{{ pub.fecha_publicacion | date:'shortDate' }}</div>
   <div [ngStyle]="{'font-family': pub.tag.fuente || 'inherit'}">{{ pub.contenido }}</div>
+  <app-comentarios-publicacion #comentariosPub [idPublicacion]="pub.id_publicacion"></app-comentarios-publicacion>
+  <app-nuevo-comentario [idPublicacion]="pub.id_publicacion" (comentarioCreado)="comentariosPub.cargarComentarios()"></app-nuevo-comentario>
 </div>
 <!-- Botón al final de la lista -->
 <div class="text-center my-4" *ngIf="!fin && !cargando">
