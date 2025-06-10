@@ -40,7 +40,7 @@ export class EditarUsuarioComponent implements OnInit {
       email: [this.usuario?.email || ''],
       sexo: [this.usuario?.sexo || ''],
       fecha_nacimiento: [this.usuario?.fecha_nacimiento || ''],
-      fecha_creacion: [this.usuario?.fecha_creacion || ''],
+      // fecha_creacion: [this.usuario?.fecha_creacion || ''],
       es_admin: [this.usuario?.es_admin || '']
     });
   }
