@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { BuscadorUsuariosComponent } from '../../components/buscador-usuarios/buscador-usuarios.component';
 import { Usuario } from '../../modelos/usuario';
+import { EditarUsuarioComponent } from '../../components/editar-usuario/editar-usuario.component';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -17,7 +18,8 @@ import { Usuario } from '../../modelos/usuario';
     CommonModule,
     MenuAdminComponent,
     ListaUsuariosComponent,
-    BuscadorUsuariosComponent
+    BuscadorUsuariosComponent,
+    EditarUsuarioComponent
   ],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss'
@@ -25,6 +27,7 @@ import { Usuario } from '../../modelos/usuario';
 export class DashboardPageComponent {
   //Almacena los datos del usuario filtrado, si está vacio mosttrara todos los usuarios
   usuarioFiltro: Usuario | null = null;
+  usuarioEditado: Usuario | null = null;
   
   constructor(
     public authService: AuthService
@@ -33,5 +36,9 @@ export class DashboardPageComponent {
   onSubmit(usuario: Usuario) {
     this.usuarioFiltro = usuario;
   }
+
+  onUsuarioEditado(usuario: Usuario) {
+  this.usuarioEditado = usuario;
+}
 
 }

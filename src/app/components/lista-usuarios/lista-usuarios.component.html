@@ -32,8 +32,13 @@
           <td>{{usuario.apellidos}}</td>
           <td>{{usuario.email}}</td>
           <td>
-            <button class="btn btn-info btn-sm me-1"
+            <button class="btn btn-primary btn-sm me-1"
               [routerLink]="['/perfil', usuario.nombre_usuario]"
+              title="Perfil">
+              <mat-icon>person</mat-icon>
+            </button>
+            <button class="btn btn-info btn-sm me-1"
+              (click)="editarUsuario(usuario)"
               title="Editar">
               <mat-icon>edit</mat-icon>
             </button>
