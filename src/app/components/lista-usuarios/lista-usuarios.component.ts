@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Usuario } from '../../modelos/usuario';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from '../../services/usuario.service';
@@ -24,6 +24,7 @@ import { RouterModule } from '@angular/router';
 export class ListaUsuariosComponent implements OnInit, OnChanges{
 
   @Input() filtroUsuario: Usuario | null = null;
+  @Output() usuarioEditar = new EventEmitter<Usuario>();
 
   public fecha_nacimiento:Date = new Date();
   public fecha_creacion:Date = new Date();
@@ -34,6 +35,7 @@ export class ListaUsuariosComponent implements OnInit, OnChanges{
   size: number = 10;
   total: number = 0;
   pageSizes = [10, 25, 50, 100];
+  
 
   constructor (
     private usuarioService:UsuarioService
@@ -76,14 +78,8 @@ export class ListaUsuariosComponent implements OnInit, OnChanges{
   });
   }
 
-  editarUsuario(nombre: string) {
-    console.log('Editar usuario:', nombre);
-    this.usuarioService.obtenerUsuario(nombre).subscribe(usuario => {
-      console.log('Usuario obtenido:', usuario);
-      // Aquí podras abrir un modal o redirigir a una página de edición
-    }, error => {
-      console.error('Error al obtener el usuario:', error);
-    });
+  editarUsuario(usuario: Usuario) {
+    this.usuarioEditar.emit(usuario);
   }
   
   eliminarUsuario(nombre: string) {

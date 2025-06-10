@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { PublicacionService } from '../../services/publicacion.service';
 import { ComentariosPublicacionComponent } from '../comentarios-publicacion/comentarios-publicacion.component';
 import { NuevoComentarioComponent } from '../nuevo-comentario/nuevo-comentario.component';
-import { Utilidades } from '../../utils/utilidades';
 import { environment } from '../../../environment';
 
 @Component({

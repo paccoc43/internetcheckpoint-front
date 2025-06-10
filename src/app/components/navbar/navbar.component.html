@@ -1,26 +1,26 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid position-relative">
     <a class="navbar-brand" routerLink="/">
       <span class="material-icons">home</span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Título centrado -->
+    <span class="position-absolute top-50 start-50 translate-middle fw-bold fs-4 text-primary user-select-none" style="pointer-events: none;">
+      Internet Checkpoint
+    </span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" *ngIf="authService.isLoggedIn()">
-          <a class="nav-link"  routerLink="/perfil" routerLinkActive="active">Perfil</a>
+          <a class="nav-link" routerLink="/perfil" routerLinkActive="active">Perfil</a>
         </li>
         <li class="nav-item" *ngIf="authService.isAdmin() ==='ADMIN'">
-          <a class="nav-link disabled"  aria-disabled="true">Amigos</a>
-        </li>
-        <li class="nav-item" >
-        </li>
-        <li class="nav-item" >
+          <a class="nav-link disabled" aria-disabled="true">Amigos</a>
         </li>
       </ul>
-        <a class="btn btn-outline-success ms-2 w-20" *ngIf="!authService.isLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
-        <a class="btn btn-outline-danger ms-2 w-20" *ngIf="authService.isLoggedIn()"(click)="logout()">Logout</a>
+      <a class="btn btn-outline-success ms-2 w-20" *ngIf="!authService.isLoggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
+      <a class="btn btn-outline-danger ms-2 w-20" *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</a>
     </div>
   </div>
 </nav>

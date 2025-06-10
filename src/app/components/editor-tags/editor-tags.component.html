@@ -2,21 +2,20 @@
   <div class="card-header bg-primary text-white">
     <h5 class="mb-0">{{ editando ? 'Editar Tag' : 'Nueva Tag' }}</h5>
   </div>
-  <form (ngSubmit)="guardarTag()" #tagForm="ngForm" autocomplete="off">
+  <form [formGroup]="tagForm" (ngSubmit)="guardarTag()" autocomplete="off">
     <div class="card-body">
       <div class="row g-3">
-        <!-- Input Creador al principio -->
         <div class="col-md-4">
           <label class="form-label">Creador</label>
-          <input class="form-control" disabled [(ngModel)]="tag.nombre_usuario" name="nombre_usuario">
+          <input class="form-control" formControlName="nombre_usuario" readonly>
         </div>
         <div class="col-md-4">
           <label class="form-label">Nombre</label>
-          <input class="form-control" [(ngModel)]="tag.nombre" name="nombre" required maxlength="30" placeholder="Nombre de la tag">
+          <input class="form-control" formControlName="nombre" required maxlength="30" placeholder="Nombre de la tag">
         </div>
         <div class="col-md-4">
           <label class="form-label">Fuente</label>
-          <select class="form-select" [(ngModel)]="tag.fuente" name="fuente">
+          <select class="form-select" formControlName="fuente">
             <option *ngFor="let fuente of fuentes" [ngValue]="fuente" [style.font-family]="fuente">
               {{ fuente }}
             </option>
@@ -25,19 +24,19 @@
         <div class="col-md-6 col-lg-4">
           <label class="form-label fw-semibold">Color</label>
           <div class="input-group">
-            <input class="form-control form-control-color shadow-sm" [(ngModel)]="tag.color" name="color" type="color" style="max-width: 60px;">
-            <input class="form-control shadow-sm" [(ngModel)]="tag.color" name="colorText" type="text" readonly>
+            <input class="form-control form-control-color shadow-sm" formControlName="color" type="color" style="max-width: 60px;">
+            <input class="form-control shadow-sm" [value]="tagForm.get('color')?.value" type="text" readonly>
           </div>
         </div>
         <div class="col-md-4">
           <label class="form-label">Emoji</label>
           <div class="input-group">
-            <input class="form-control" [(ngModel)]="tag.emoji" name="emoji" readonly placeholder="Selecciona un emoji">
+            <input class="form-control" formControlName="emoji" readonly placeholder="Selecciona un emoji">
             <button #emojiButton type="button" class="btn btn-outline-secondary" (click)="mostrarPicker = !mostrarPicker">
-              <span *ngIf="tag.emoji">{{ tag.emoji }}</span>
-              <span *ngIf="!tag.emoji">😊</span>
+              <span *ngIf="tagForm.get('emoji')?.value">{{ tagForm.get('emoji')?.value }}</span>
+              <span *ngIf="!tagForm.get('emoji')?.value">😊</span>
             </button>
-            <button *ngIf="tag.emoji" type="button" class="btn btn-outline-danger" (click)="eliminarEmoji()" title="Eliminar emoji">
+            <button *ngIf="tagForm.get('emoji')?.value" type="button" class="btn btn-outline-danger" (click)="eliminarEmoji()" title="Eliminar emoji">
               <mat-icon>close</mat-icon>
             </button>
           </div>
@@ -45,10 +44,9 @@
             <emoji-mart (emojiSelect)="seleccionarEmoji($event)"></emoji-mart>
           </div>
         </div>
-        <!-- Descripción como textarea al final -->
         <div class="col-12">
           <label class="form-label">Descripción</label>
-          <textarea class="form-control" [(ngModel)]="tag.descripcion" name="descripcion" maxlength="100" rows="2" placeholder="Descripción corta"></textarea>
+          <textarea class="form-control" formControlName="descripcion" maxlength="100" rows="2" placeholder="Descripción corta"></textarea>
         </div>
       </div>
     </div>

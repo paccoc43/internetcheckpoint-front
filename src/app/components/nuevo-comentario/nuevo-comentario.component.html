@@ -1,8 +1,7 @@
-<form (ngSubmit)="enviarComentario()" class="d-flex align-items-center gap-2 mt-2" style="position: relative;">
+<form [formGroup]="comentarioForm" (ngSubmit)="enviarComentario()" class="d-flex align-items-center gap-2 mt-2" style="position: relative;">
   <input #inputComentario
          type="text"
-         [(ngModel)]="contenido"
-         name="contenido"
+         formControlName="contenido"
          class="form-control"
          placeholder="Escribe un comentario..."
          [disabled]="cargando">
@@ -17,10 +16,10 @@
   <div *ngIf="mostrarPicker"
        #emojiPicker
        class="mt-2 position-absolute"
-       style="z-index: 1000; left: 0;">
+       style="z-index: 1000; top: 100%; right: 0;">
     <emoji-mart (emojiSelect)="agregarEmoji($event)"></emoji-mart>
   </div>
-  <button type="submit" class="btn btn-success btn-sm" [disabled]="cargando || !contenido.trim()">
+  <button type="submit" class="btn btn-success btn-sm" [disabled]="cargando || comentarioForm.invalid">
     <span *ngIf="!cargando">Comentar</span>
     <span *ngIf="cargando" class="spinner-border spinner-border-sm"></span>
   </button>

@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewC
 import { ComentarioService } from '../../services/comentario.service';
 import { Comentario } from '../../modelos/comentario';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Utilidades } from '../../utils/utilidades';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 
@@ -11,7 +11,7 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     PickerComponent
   ],
   templateUrl: './nuevo-comentario.component.html',
@@ -21,23 +21,33 @@ export class NuevoComentarioComponent {
   @Input() idPublicacion!: number;
   @Output() comentarioCreado = new EventEmitter<void>();
 
-  
   @ViewChild('emojiPicker') emojiPickerRef!: ElementRef;
   @ViewChild('emojiButton') emojiButtonRef!: ElementRef;
   @ViewChild('inputComentario') inputComentarioRef!: ElementRef;
 
-  contenido: string = '';
+  comentarioForm: FormGroup;
   cargando = false;
   error: string = '';
   exito: boolean = false;
   mostrarPicker = false;
 
-  constructor(private comentarioService: ComentarioService) {}
+  constructor(
+    private comentarioService: ComentarioService,
+    private fb: FormBuilder
+  ) {
+    this.comentarioForm = this.fb.group({
+      contenido: ['', [Validators.required, Validators.pattern(/\S+/)]]
+    });
+  }
+
+  get contenido() {
+    return this.comentarioForm.get('contenido');
+  }
 
   enviarComentario() {
     this.error = '';
     this.exito = false;
-    if (!this.contenido.trim()) {
+    if (this.comentarioForm.invalid) {
       this.error = 'El comentario no puede estar vacío.';
       return;
     }
@@ -45,17 +55,16 @@ export class NuevoComentarioComponent {
       id_comentario: 0,
       id_publicacion: this.idPublicacion,
       nombre_usuario: Utilidades.obtenerNombreUsuario(),
-      contenido: this.contenido,
+      contenido: this.contenido?.value,
       fecha_comentario: ""
     };
     this.cargando = true;
     this.comentarioService.crearComentario(nuevoComentario).subscribe({
       next: () => {
         this.exito = true;
-        this.contenido = '';
+        this.comentarioForm.reset();
         this.cargando = false;
-        this.comentarioCreado.emit(); // <--- Esto ya está bien
-
+        this.comentarioCreado.emit();
       },
       error: () => {
         this.error = 'No se pudo enviar el comentario.';
@@ -69,7 +78,8 @@ export class NuevoComentarioComponent {
     const input = this.inputComentarioRef.nativeElement as HTMLInputElement;
     const start = input.selectionStart || 0;
     const end = input.selectionEnd || 0;
-    this.contenido = this.contenido.slice(0, start) + emoji + this.contenido.slice(end);
+    const valor = this.contenido?.value || '';
+    this.contenido?.setValue(valor.slice(0, start) + emoji + valor.slice(end));
     setTimeout(() => {
       input.focus();
       input.setSelectionRange(start + emoji.length, start + emoji.length);
