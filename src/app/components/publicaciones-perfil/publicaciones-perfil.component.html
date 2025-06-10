@@ -3,7 +3,14 @@
      [attr.title]="pub.tag.descripcion">
   <div class="d-flex align-items-center mb-2">
     <span class="fw-bold me-2">{{ pub.nombre_usuario }}</span>
-    <span *ngIf="pub.tag.emoji" class="me-1" style="font-size: 1.5rem;">{{ pub.tag.emoji }}</span>
+    <!-- Línea de separación -->
+    <span 
+      class="mx-2"
+      style="display: inline-block; width: 2px; height: 20px; vertical-align: middle;"
+      [ngStyle]="{'background-color': pub.tag.color || '#ccc'}">
+    </span>
+    <div class="text-muted small">{{ pub.fecha_publicacion | date:'shortDate' }}</div>
+    <span *ngIf="pub.tag.emoji" class="ms-2 me-1" style="font-size: 1.5rem;">{{ pub.tag.emoji }}</span>
     <span class="fw-bold"
           [ngStyle]="{'color': pub.tag.color || 'inherit', 'font-family': pub.tag.fuente || 'inherit'}">
       {{ pub.tag.nombre }}
