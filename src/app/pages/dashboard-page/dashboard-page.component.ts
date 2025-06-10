@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { BuscadorUsuariosComponent } from '../../components/buscador-usuarios/buscador-usuarios.component';
 import { Usuario } from '../../modelos/usuario';
 import { EditarUsuarioComponent } from '../../components/editar-usuario/editar-usuario.component';
+import { FondoAnimadoComponent } from "../../components/fondo-animado/fondo-animado.component";
 
 @Component({
   selector: 'app-dashboard-page',
@@ -16,11 +17,12 @@ import { EditarUsuarioComponent } from '../../components/editar-usuario/editar-u
     RouterModule,
     NavbarComponent,
     CommonModule,
+    FondoAnimadoComponent,
     MenuAdminComponent,
     ListaUsuariosComponent,
     BuscadorUsuariosComponent,
     EditarUsuarioComponent
-  ],
+],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss'
 })
