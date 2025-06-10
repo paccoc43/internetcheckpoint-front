@@ -2,23 +2,27 @@
 <app-navbar class="sticky-top"></app-navbar>
 <app-menu-admin *ngIf="authService.isAdmin() === 'ADMIN'"></app-menu-admin>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 <div class="container mt-4">
   <div class="row mb-3">
     <div class="col-12 col-md-12">
         <app-nueva-publicacion *ngIf="authService.isLoggedIn()"></app-nueva-publicacion>
     </div>
   </div>
-  <app-menu></app-menu>
+  
+  <!-- <app-menu></app-menu> -->
   <app-publicaciones-home></app-publicaciones-home>
 </div>
 <app-footer></app-footer>
