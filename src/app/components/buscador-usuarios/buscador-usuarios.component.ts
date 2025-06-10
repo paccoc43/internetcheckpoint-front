@@ -38,13 +38,13 @@ export class BuscadorUsuariosComponent {
 
   limpiarForm() {
   this.busquedaForm.reset({
-    nombre_usuario: '',
-    apellidos: '',
-    email: '',
-    sexo: '',
-    fecha_nacimiento: '',
-    fecha_creacion: '',
-    es_admin: ''
+    nombre_usuario: null,
+    apellidos: null,
+    email: null,
+    sexo: null,
+    fecha_nacimiento: null,
+    fecha_creacion: null,
+    es_admin: ""
   });
 }
 }
