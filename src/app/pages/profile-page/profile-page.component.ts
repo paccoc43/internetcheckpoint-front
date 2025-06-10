@@ -4,6 +4,7 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { PerfilUsuarioComponent } from '../../components/perfil-usuario/perfil-usuario.component';
 import { PublicacionesPerfilComponent } from '../../components/publicaciones-perfil/publicaciones-perfil.component';
 import { FooterComponent } from "../../components/footer/footer.component";
+import { FondoAnimadoComponent } from "../../components/fondo-animado/fondo-animado.component";
 
 @Component({
   selector: 'app-profile-page',
@@ -13,7 +14,8 @@ import { FooterComponent } from "../../components/footer/footer.component";
     NavbarComponent,
     PerfilUsuarioComponent,
     PublicacionesPerfilComponent,
-    FooterComponent
+    FooterComponent,
+    FondoAnimadoComponent
 ],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss'
