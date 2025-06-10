@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { MenuComponent } from '../../components/menu/menu.component';
 import { MenuAdminComponent } from '../../components/menu-admin/menu-admin.component';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -20,7 +19,6 @@ import { FondoAnimadoComponent } from '../../components/fondo-animado/fondo-anim
     FondoAnimadoComponent,
     NuevaPublicacionComponent,
     MenuAdminComponent,
-    MenuComponent,
     PublicacionesHomeComponent,
     FooterComponent
   ],

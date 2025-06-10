@@ -7,7 +7,6 @@ import { PublicacionService } from '../../services/publicacion.service';
 import { Publicacion } from '../../modelos/publicacion';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { Utilidades } from '../../utils/utilidades';
-import { animate } from 'animejs';
 
 @Component({
   selector: 'app-nueva-publicacion',
@@ -120,6 +119,10 @@ export class NuevaPublicacionComponent implements OnInit {
       formData.append('tag', formValue.tagSeleccionado.id_tag.toString());
       formData.append('nombre_usuario', Utilidades.obtenerNombreUsuario());
       this.archivos.forEach((archivo) => {
+        if (archivo && archivo.size > 20 * 1024 * 1024) { // 20 MB
+          alert('El archivo es demasiado grande. Máximo 20 MB.');
+          return;
+        }
         formData.append('archivos', archivo);
       });
       console.log('Enviando publicación con archivos:', formData);

@@ -46,4 +46,8 @@ export class UsuarioService {
   modificarUsuario(usuario:Usuario):Observable<Usuario> {
     return this.httpclient.put<Usuario>(`${this.urlApi}/usuarios/${usuario.nombre_usuario}`, usuario);
   }
+
+  actualizarImagenPerfil(formData: FormData): Observable<Usuario> {
+    return this.httpclient.put<Usuario>(`${this.urlApi}/usuarios/imagen`,formData);
+  }
 }

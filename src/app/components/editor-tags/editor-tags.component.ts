@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 import { TagService } from '../../services/tag.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { Tag } from '../../modelos/tag';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
@@ -14,7 +14,7 @@ import { Utilidades } from '../../utils/utilidades';
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule,
+    ReactiveFormsModule,
     MatIconModule,
     PickerComponent
   ],
@@ -25,61 +25,74 @@ export class EditorTagsComponent implements OnInit {
   @ViewChild('emojiPicker') emojiPickerRef!: ElementRef;
   @ViewChild('emojiButton') emojiButtonRef!: ElementRef;
 
-  tag: Tag = this.nuevaTag();
+  tagForm!: FormGroup;
   editando: boolean = false;
   mostrarPicker: boolean = false;
+  tagEditando: Tag | null = null;
 
   fuentes: string[] = [
-  'Arial', 'Verdana', 'Tahoma', 'Trebuchet MS', 'Times New Roman',
-  'Georgia', 'Garamond', 'Courier New', 'Brush Script MT', 'Comic Sans',
-  'Impact', 'Lucida Console', 'Monaco', 'Palatino', 'Segoe UI',
-  'Roboto', 'Montserrat', 'Lato', 'Oswald', 'Raleway'
+    'Arial', 'Verdana', 'Tahoma', 'Trebuchet MS', 'Times New Roman',
+    'Georgia', 'Garamond', 'Courier New', 'Brush Script MT', 'Comic Sans',
+    'Impact', 'Lucida Console', 'Monaco', 'Palatino', 'Segoe UI',
+    'Roboto', 'Montserrat', 'Lato', 'Oswald', 'Raleway'
   ];
 
   constructor(
     private tagService: TagService,
+    private fb: FormBuilder
   ) {}
 
-  ngOnInit(): void {}
-
-  nuevaTag(): Tag {
-    return {
-      id_tag: 0,
-      nombre: '',
-      fuente: '',
-      color: '',
-      descripcion: '',
-      emoji: '',
-      nombre_usuario: Utilidades.obtenerNombreUsuario()
-    };
+  ngOnInit(): void {
+    this.tagForm = this.fb.group({
+      nombre_usuario: [{ value: Utilidades.obtenerNombreUsuario(), disabled: true }],
+      nombre: ['', [Validators.required, Validators.maxLength(30)]],
+      fuente: [''],
+      color: [''],
+      emoji: [''],
+      descripcion: ['', [Validators.maxLength(100)]]
+    });
   }
 
   guardarTag() {
-    if (this.editando) {
-      this.tagService.modificarTag(this.tag).subscribe(() => {
-        this.cancelar();
-      });
+    if (this.tagForm.invalid) return;
+    const tag: Tag = {
+      ...this.tagForm.getRawValue(),
+      id_tag: this.editando && this.tagEditando ? this.tagEditando.id_tag : 0
+    };
+    if (this.editando && this.tagEditando) {
+      this.tagService.modificarTag(tag).subscribe(() => this.cancelar());
     } else {
-      this.tagService.crearTag(this.tag).subscribe((nuevaTag) => {
-        console.log('Tag creada con id:', nuevaTag.id_tag);
-        this.cancelar();
-      });
+      this.tagService.crearTag(tag).subscribe(() => this.cancelar());
     }
   }
 
   editarTag(tag: Tag) {
-    this.tag = tag ;
+    this.tagEditando = tag;
     this.editando = true;
+    this.tagForm.patchValue(tag);
   }
 
   cancelar() {
-    this.tag = this.nuevaTag();
+    this.tagForm.reset({
+      nombre_usuario: Utilidades.obtenerNombreUsuario(),
+      nombre: '',
+      fuente: '',
+      color: '',
+      emoji: '',
+      descripcion: ''
+    });
     this.editando = false;
+    this.tagEditando = null;
+    this.mostrarPicker = false;
   }
 
   seleccionarEmoji(event: any) {
-    this.tag.emoji = event.emoji.native;
+    this.tagForm.get('emoji')?.setValue(event.emoji.native);
     this.mostrarPicker = false;
+  }
+
+  eliminarEmoji() {
+    this.tagForm.get('emoji')?.setValue('');
   }
 
   @HostListener('document:mousedown', ['$event'])
@@ -94,9 +107,5 @@ export class EditorTagsComponent implements OnInit {
         this.mostrarPicker = false;
       }
     }
-  }
-
-  eliminarEmoji() {
-    this.tag.emoji = '';
   }
 }
