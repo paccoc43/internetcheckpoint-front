@@ -5,6 +5,7 @@ import { Publicacion } from '../../modelos/publicacion';
 import { Utilidades } from '../../utils/utilidades';
 import { ComentariosPublicacionComponent } from '../comentarios-publicacion/comentarios-publicacion.component';
 import { NuevoComentarioComponent } from '../nuevo-comentario/nuevo-comentario.component';
+import { environment } from '../../../environment';
 
 @Component({
   selector: 'app-publicaciones-perfil',
@@ -19,6 +20,7 @@ import { NuevoComentarioComponent } from '../nuevo-comentario/nuevo-comentario.c
 })
 export class PublicacionesPerfilComponent implements OnInit {
   @Input() nombreUsuario: string = '';
+  urlRecursos = environment.recursos;
   publicaciones: Publicacion[] = [];
   page = 0;
   size = 10;
@@ -54,7 +56,9 @@ export class PublicacionesPerfilComponent implements OnInit {
     const idx = rutaNormalizada.indexOf('/uploads/');
     if (idx !== -1) {
       // Cambia el puerto si tu backend es diferente
-      return `http://localhost:8080${rutaNormalizada.substring(idx)}`;
+      // return `http://localhost:8080${rutaNormalizada.substring(idx)}`;
+      return `${this.urlRecursos}${rutaNormalizada.substring(idx)}`;
+
     }
     return rutaNormalizada;
   }

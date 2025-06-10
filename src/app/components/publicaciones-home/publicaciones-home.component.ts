@@ -5,6 +5,7 @@ import { PublicacionService } from '../../services/publicacion.service';
 import { ComentariosPublicacionComponent } from '../comentarios-publicacion/comentarios-publicacion.component';
 import { NuevoComentarioComponent } from '../nuevo-comentario/nuevo-comentario.component';
 import { Utilidades } from '../../utils/utilidades';
+import { environment } from '../../../environment';
 
 @Component({
   selector: 'app-publicaciones-home',
@@ -18,6 +19,7 @@ import { Utilidades } from '../../utils/utilidades';
   styleUrl: './publicaciones-home.component.scss'
 })
 export class PublicacionesHomeComponent implements OnInit {
+  urlRecursos = environment.recursos;
   publicaciones: Publicacion[] = [];
   page = 0;
   size = 10;
@@ -42,16 +44,16 @@ export class PublicacionesHomeComponent implements OnInit {
   }
 
   formateaUrl(ruta: string): string {
-    // Si la ruta ya es una URL pública, solo retorna la ruta
-    if (ruta.startsWith('http')) return ruta;
     // Normaliza las barras
-    const rutaNormalizada = ruta.replace(/\\/g, '/');
+    const rutaFormateada = ruta.replace(/\\/g, '/');
     // Busca la subruta /uploads/
-    const idx = rutaNormalizada.indexOf('/uploads/');
+    const idx = rutaFormateada.indexOf('/uploads/');
     if (idx !== -1) {
       // Cambia el puerto si tu backend es diferente
-      return `http://localhost:8080${rutaNormalizada.substring(idx)}`;
+      // return `http://localhost:8080${rutaNormalizada.substring(idx)}`;
+      return `${this.urlRecursos}${rutaFormateada.substring(idx)}`;
+
     }
-    return rutaNormalizada;
+    return rutaFormateada;
   }
 }
