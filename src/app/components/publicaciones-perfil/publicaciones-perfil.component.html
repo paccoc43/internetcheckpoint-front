@@ -19,7 +19,7 @@
   <div class="text-muted small">{{ pub.fecha_publicacion | date:'shortDate' }}</div>
   <div [ngStyle]="{'font-family': pub.tag.fuente || 'inherit'}">{{ pub.contenido }}</div>
     <div *ngIf="pub.imagenUrl" class="my-2 text-center">
-      <img [src]="formateaUrl(pub.imagenUrl)" alt="Imagen de la publicación" class="img-fluid rounded" style="max-height: 350px; object-fit: contain;">
+      <img [src]="formateaUrl(pub.imagenUrl)" class="img-fluid rounded" style="max-height: 350px; object-fit: contain;">
     </div>
   <app-comentarios-publicacion #comentariosPub [idPublicacion]="pub.id_publicacion"></app-comentarios-publicacion>
   <app-nuevo-comentario [idPublicacion]="pub.id_publicacion" (comentarioCreado)="comentariosPub.cargarComentarios()"></app-nuevo-comentario>
