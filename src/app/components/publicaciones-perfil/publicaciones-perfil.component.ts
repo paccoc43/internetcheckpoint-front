@@ -6,6 +6,9 @@ import { Utilidades } from '../../utils/utilidades';
 import { ComentariosPublicacionComponent } from '../comentarios-publicacion/comentarios-publicacion.component';
 import { NuevoComentarioComponent } from '../nuevo-comentario/nuevo-comentario.component';
 import { environment } from '../../../environment';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-publicaciones-perfil',
@@ -13,6 +16,7 @@ import { environment } from '../../../environment';
   imports: [
     CommonModule,
     ComentariosPublicacionComponent,
+    MatIconModule,
     NuevoComentarioComponent
   ],
   templateUrl: './publicaciones-perfil.component.html',
@@ -28,10 +32,13 @@ export class PublicacionesPerfilComponent implements OnInit {
   fin = false;
 
   constructor(
-    private publicacionService: PublicacionService
+    private publicacionService: PublicacionService,
+    public authService: AuthService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.nombreUsuario = this.route.snapshot.paramMap.get('nombre_usuario') || '';
     if (!this.nombreUsuario) this.nombreUsuario = Utilidades.obtenerNombreUsuario();
     this.cargarMas();
   }
@@ -48,18 +55,22 @@ export class PublicacionesPerfilComponent implements OnInit {
   }
 
   formateaUrl(ruta: string): string {
-    // Si la ruta ya es una URL pública, solo retorna la ruta
     if (ruta.startsWith('http')) return ruta;
-    // Normaliza las barras
+    //Elimina las barras sobrantes
     const rutaNormalizada = ruta.replace(/\\/g, '/');
-    // Busca la subruta /uploads/
     const idx = rutaNormalizada.indexOf('/uploads/');
     if (idx !== -1) {
-      // Cambia el puerto si tu backend es diferente
-      // return `http://localhost:8080${rutaNormalizada.substring(idx)}`;
       return `${this.urlRecursos}${rutaNormalizada.substring(idx)}`;
 
     }
     return rutaNormalizada;
   }
+
+  eliminarPublicacion(id: number) {
+  if (confirm('¿Seguro que deseas eliminar esta publicación?')) {
+    this.publicacionService.eliminarPublicacion(id).subscribe(() => {
+      this.publicaciones = this.publicaciones.filter(pub => pub.id_publicacion !== id);
+    });
+  }
+}
 }

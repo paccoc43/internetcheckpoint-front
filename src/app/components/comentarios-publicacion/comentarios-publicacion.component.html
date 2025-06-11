@@ -4,10 +4,10 @@
     <div class="small text-muted">{{ comentario.fecha_comentario | date:'short' }}</div>
     <div>{{ comentario.contenido }}</div>
     <button *ngIf="authService.isAdmin() === 'ADMIN'"
-            class="btn btn-danger btn-sm position-absolute"
-            style="bottom: 8px; right: 8px;"
-            (click)="eliminarComentario(comentario.id_comentario)">
-      Eliminar
+        class="btn btn-danger btn-sm position-absolute"
+        style="bottom: 8px; right: 8px;"
+        (click)="eliminarComentario(comentario.id_comentario)">
+      <mat-icon class="mt-2">delete</mat-icon>
     </button>
   </li>
 </ul>

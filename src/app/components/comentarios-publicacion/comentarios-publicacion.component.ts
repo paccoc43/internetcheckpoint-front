@@ -3,12 +3,14 @@ import { ComentarioService } from '../../services/comentario.service';
 import { Comentario } from '../../modelos/comentario';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-comentarios-publicacion',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   templateUrl: './comentarios-publicacion.component.html',
   styleUrl: './comentarios-publicacion.component.scss'

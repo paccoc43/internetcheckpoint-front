@@ -15,6 +15,11 @@
           [ngStyle]="{'color': pub.tag.color || 'inherit', 'font-family': pub.tag.fuente || 'inherit'}">
       {{ pub.tag.nombre }}
     </span>
+    <button *ngIf="authService.isAdmin() === 'ADMIN'"
+        class="btn btn-danger btn-sm mt-2 ms-auto"
+        (click)="eliminarPublicacion(pub.id_publicacion)">
+      <mat-icon class="mt-2">delete</mat-icon>
+    </button>
   </div>
   <div [ngStyle]="{'font-family': pub.tag.fuente || 'inherit'}">{{ pub.contenido }}</div>
   <!-- Mostrar imagen si existe -->

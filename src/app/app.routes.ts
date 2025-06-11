@@ -5,8 +5,8 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { TagsPageComponent } from './pages/tags-page/tags-page.component';
 import { MetricsPageComponent } from './pages/metrics-page/metrics-page.component';
-import { AdminGuard } from './modelos/admin-guard';
-import { UserGuard } from './modelos/user-guard';
+import { AdminGuard } from './guard/admin-guard';
+import { UserGuard } from './guard/user-guard';
 
 export const routes: Routes = [
     { 

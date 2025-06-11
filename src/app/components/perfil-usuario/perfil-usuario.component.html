@@ -1,4 +1,10 @@
-<div class="card shadow mb-4 p-3 perfil-card">
+<div class="card shadow mb-4 p-3 perfil-card"
+     [ngStyle]="{
+       'background-color': 'rgba(255,255,255,0.6)',
+       'backdrop-filter': 'blur(8px)',
+       '-webkit-backdrop-filter': 'blur(8px)',
+       'border-radius': '1.5rem'
+     }">
   <div class="row g-3 align-items-center">
     <div class="col-auto d-flex flex-column align-items-center position-relative">
       <div class="position-relative">
@@ -9,12 +15,22 @@
         </label>
       </div>
       <h4 class="mb-1 mt-3 text-center w-100">
-        {{ usuario?.nombre_usuario }}
+        <span class="border-1 rounded text-dark border-color-primary"
+          [ngStyle]="{
+            'display': 'inline-block',
+            'background': 'rgba(255,255,255,0.85)',
+            'padding': '0.35em 1.2em',
+            'font-weight': '600',
+            'box-shadow': '0 2px 8px rgba(0,0,0,0.04)'
+          }"
+        >
+          {{ usuario?.nombre_usuario }}
+        </span>
       </h4>
     </div>
-    <div class="col">
-      <div class="row">
-        <div class="col-12 col-md-12">
+    <div class="col d-flex flex-column align-items-center">
+      <div class="row w-100 justify-content-center">
+        <div class="col-12 col-md-10">
           <div><strong>Email:</strong> {{ usuario?.email }}</div>
           <div><strong>Apellidos:</strong> {{ usuario?.apellidos }}</div>
           <div><strong>Sexo:</strong> {{ usuario?.sexo }}</div>
