@@ -2,21 +2,25 @@
      [ngStyle]="{'border-left': pub.tag.color ? '8px solid ' + pub.tag.color : ''}"
      [attr.title]="pub.tag.descripcion">
   <div class="d-flex align-items-center mb-2">
-    <span class="fw-bold me-2">{{ pub.nombre_usuario }}</span>
-    <!-- Línea de separación -->
-    <span 
-      class="mx-2"
-      style="display: inline-block; width: 2px; height: 20px; vertical-align: middle;"
-      [ngStyle]="{'background-color': pub.tag.color || '#ccc'}">
-    </span>
-    <div class="text-muted small">{{ pub.fecha_publicacion | date:'shortDate' }}</div>
-    <span *ngIf="pub.tag.emoji" class="ms-2 me-1" style="font-size: 1.5rem;">{{ pub.tag.emoji }}</span>
-    <span class="fw-bold"
-          [ngStyle]="{'color': pub.tag.color || 'inherit', 'font-family': pub.tag.fuente || 'inherit'}">
-      {{ pub.tag.nombre }}
-    </span>
-  </div>
+  <span class="fw-bold me-2">{{ pub.nombre_usuario }}</span>
+  <!-- Línea de separación -->
+  <span 
+    class="mx-2"
+    style="display: inline-block; width: 2px; height: 20px; vertical-align: middle;"
+    [ngStyle]="{'background-color': pub.tag.color || '#ccc'}">
+  </span>
   <div class="text-muted small">{{ pub.fecha_publicacion | date:'shortDate' }}</div>
+  <span *ngIf="pub.tag.emoji" class="ms-2 me-1" style="font-size: 1.5rem;">{{ pub.tag.emoji }}</span>
+  <span class="fw-bold"
+        [ngStyle]="{'color': pub.tag.color || 'inherit', 'font-family': pub.tag.fuente || 'inherit'}">
+    {{ pub.tag.nombre }}
+  </span>
+  <button *ngIf="authService.isAdmin() === 'ADMIN'"
+      class="btn btn-danger btn-sm ms-auto"
+      (click)="eliminarPublicacion(pub.id_publicacion)">
+    <mat-icon class="mt-2">delete</mat-icon>
+  </button>
+</div>
   <div [ngStyle]="{'font-family': pub.tag.fuente || 'inherit'}">{{ pub.contenido }}</div>
     <div *ngIf="pub.imagenUrl" class="my-2 text-center">
       <img [src]="formateaUrl(pub.imagenUrl)" class="img-fluid rounded" style="max-height: 350px; object-fit: contain;">

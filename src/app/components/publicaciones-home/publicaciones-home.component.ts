@@ -5,6 +5,9 @@ import { PublicacionService } from '../../services/publicacion.service';
 import { ComentariosPublicacionComponent } from '../comentarios-publicacion/comentarios-publicacion.component';
 import { NuevoComentarioComponent } from '../nuevo-comentario/nuevo-comentario.component';
 import { environment } from '../../../environment';
+import { AuthService } from '../../services/auth.service';
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-publicaciones-home',
@@ -13,6 +16,7 @@ import { environment } from '../../../environment';
     CommonModule,
     ComentariosPublicacionComponent,
     NuevoComentarioComponent,
+    MatIconModule
   ],
   templateUrl: './publicaciones-home.component.html',
   styleUrl: './publicaciones-home.component.scss'
@@ -25,7 +29,10 @@ export class PublicacionesHomeComponent implements OnInit {
   cargando = false;
   fin = false;
 
-  constructor(private publicacionService: PublicacionService) {}
+  constructor(
+    private publicacionService: PublicacionService,
+    public authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.cargarMas();
@@ -54,5 +61,13 @@ export class PublicacionesHomeComponent implements OnInit {
 
     }
     return rutaFormateada;
+  }
+
+  eliminarPublicacion(id: number) {
+    if (confirm('¿Seguro que deseas eliminar esta publicación?')) {
+      this.publicacionService.eliminarPublicacion(id).subscribe(() => {
+        this.publicaciones = this.publicaciones.filter(pub => pub.id_publicacion !== id);
+      });
+    }
   }
 }

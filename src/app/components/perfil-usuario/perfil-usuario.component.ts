@@ -29,14 +29,13 @@ export class PerfilUsuarioComponent {
   ngOnInit(): void {
     const nombre_usuario = this.route.snapshot.paramMap.get('nombre_usuario');
     if (nombre_usuario) {
-      // Cargar el usuario desde el servicio usando el nombre_usuario de la ruta
+      // Cargar el usuario
       this.usuarioService.obtenerUsuario(nombre_usuario).subscribe(usuario => {
         this.usuario = usuario;
-        // Si tienes la URL de la imagen en el usuario, asígnala aquí
         this.imagenPerfil = this.formateaUrl(usuario.imagen_perfil || 'assets/default-profile.png');
       });
     } else {
-      // Si no hay parámetro, carga el usuario logueado como antes
+      // Si no hay parámetro, carga el usuario logueado
       const usuario = localStorage.getItem('usuario');
       if (usuario) {
         this.usuario = JSON.parse(usuario) as Usuario;
