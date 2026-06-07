@@ -1,66 +1,131 @@
-# InternetCheckpoint-Front
-![](./src/assets/img/prueba.svg)
+# InternetCheckpoint
 
-* [Rama main](https://github.com/paccoc43/internetcheckpoint-front)
-* [Rama develop](https://github.com/paccoc43/internetcheckpoint-front/tree/develop)
+## 📌 Acerca del Proyecto
 
-## Requerimientos
+**InternetCheckpoint** es una red social donde los usuarios pueden compartir sus vivencias y experiencias. Otros usuarios pueden interactuar a través de comentarios en las publicaciones.
 
-Descomprimir dev.zip en C:\
+### Características Principales
+- **Publicación de vivencias**: Los usuarios pueden crear posts para compartir sus experiencias con texto, imágenes y videos
+- **Sistema de comentarios**: Permite que otros usuarios comenten en las publicaciones
+- **Personalización de perfil**: Cada usuario puede personalizar su perfil
+- **Personalización de posts**: Los usuarios pueden personalizar el estilo y contenido de sus publicaciones
+- **Sistema de búsqueda**: Búsqueda de usuarios y contenido
+- **Panel de administración**: Gestión de usuarios, publicaciones y tags
 
-Entornos necesarios
+### Características Futuras
+- Sistema de amigos
+- Timeline de publicaciones
+- Notificaciones en tiempo real
 
+---
 
-* [VSCode](https://code.visualstudio.com/) 
+## 🛠️ Tecnologías Utilizadas
 
-El proyecto utiliza los siguientes paquetes de código abierto:
+- [Node.js](https://nodejs.org) - Entorno de ejecución
+- [Angular](https://angular.io) - Framework frontend
+- [Angular Material](https://material.angular.io) - Componentes UI
+- [Bootstrap](https://getbootstrap.com) - Framework CSS
+- [AnimeJS](https://animejs.com) - Animaciones JavaScript
 
+---
 
-* [NodeJS](https://nodejs.org) 
-* [Angular](https://angular.io) 
-* [Angular CLI](https://cli.angular.io) 
-* [Angular Material](https://material.angular.io)
-* [Bootstrap](https://getbootstrap.com)
-* [AnimeJS](https://animejs.com)
+## 📋 Requisitos Previos
 
-Proyecto de base de angular-cli: ``ng new pas --style=scss --prefix=pas``
+- [Node.js](https://nodejs.org) versión 18+ 
+- npm (incluido con Node.js)
+- Cualquier editor de código (VSCode, WebStorm, etc.)
 
-## Instalación
+---
 
-    npm install
+## 🚀 Inicio Rápido
 
-## Ejecución
+### Instalación
 
-Levanta la [Web](http://localhost:4200) en entorno de  ```Desarrollo```
+```bash
+npm install
+```
 
-    npm start
+### Ejecución en desarrollo
 
-## Build
+Inicia el servidor de desarrollo. La aplicación estará disponible en [http://localhost:4200](http://localhost:4200)
 
-Genera el build 
+```bash
+npm start
+```
 
-    npm run build
+### Build para producción
 
-## Instrucciones angular-cli
+```bash
+npm run build
+```
 
-| Scaffold  | Usage                                       |
-| --------- | ------------------------------------------- |
-| Component | `ng g component my-new-component`           |
-| Directive | `ng g directive my-new-directive`           |
-| Pipe      | `ng g pipe my-new-pipe`                     |
-| Service   | `ng g service my-new-service`               |
-| Class     | `ng g class my-new-class`                   |
-| Interface | `ng g interface my-new-interface`           |
-| Enum      | `ng g enum my-new-enum`                     |
-| Module    | `ng g module my-module`                     |
-| Routing   | `ng g module modules/module-name --routing` |
+---
 
+## 📁 Estructura del Proyecto
 
-## Node.js: 
+```
+src/
+├── app/
+│   ├── components/     # Componentes reutilizables
+│   ├── pages/          # Páginas principales
+│   ├── services/       # Servicios de comunicación con API
+│   ├── models/         # Modelos e interfaces de datos
+│   ├── guard/          # Guards de autenticación y autorización
+│   └── utils/          # Utilidades y funciones auxiliares
+├── assets/             # Recursos estáticos
+└── styles/             # Estilos globales
+```
 
-Instalar nvm(gestor de versiones node): 
-    https://content.breatheco.de/en/how-to/nvm-install-windows#:~:text=Steps%20to%20install%20with%20nvm%3A&text=Install%20nvm%20Go%20to%20your,that%20you%20will%20hit%20too.
+---
 
-	- nvm install 10.16.3
+## 📝 Scripts Disponibles
 
-	- nvm use 10.16.3
+| Script | Descripción |
+| --- | --- |
+| `npm start` | Inicia el servidor de desarrollo |
+| `npm run watch` | Compila el proyecto en modo observación (útil durante desarrollo) |
+| `npm test` | Ejecuta la suite de pruebas |
+
+---
+
+## 🧪 Pruebas
+
+Para ejecutar la suite completa de pruebas:
+
+```bash
+npm test
+```
+
+Las pruebas se ejecutan con Jasmine y Karma. Los archivos de prueba están en la carpeta `src/` con la extensión `.spec.ts`.
+
+---
+
+## 🔧 Desarrollo
+
+### Estructura de Componentes
+
+Los componentes principales incluyen:
+- **Autenticación**: Login y registro de usuarios
+- **Publicaciones**: Crear y visualizar publicaciones con personalización, incluyendo soporte para imágenes y videos
+- **Comentarios**: Sistema de comentarios en publicaciones
+- **Perfil**: Página de perfil personalizable del usuario
+- **Búsqueda**: Búsqueda de usuarios
+- **Admin**: Panel administrativo para gestión de contenido y tags
+
+### Características Adicionales
+- 🎨 **Sistema de emojis**: Integración con `ngx-emoji-mart` para selector de emojis
+- 🎭 **Animaciones**: AnimeJS para efectos visuales suaves
+- 📱 **Responsive**: Bootstrap 5 para diseño adaptable
+- 🔐 **Autenticación**: Guards para proteger rutas según permisos
+
+---
+
+## 🐛 Reportar Problemas
+
+Si encuentras bugs o tienes sugerencias, por favor abre un issue en el repositorio.do para producción 
+
+---
+
+## 📄 Licencia
+
+Este proyecto es de código abierto.
